@@ -5,6 +5,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{488F2955-8F21-46ED-BC8D-059825DA8BC7}|WinFormsAppScacchi\\WinFormsAppScacchi.csproj|c:\\users\\riki\\scacchi-gui\\winformsappscacchi\\winformsappscacchi\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{488F2955-8F21-46ED-BC8D-059825DA8BC7}|WinFormsAppScacchi\\WinFormsAppScacchi.csproj|solutionrelative:winformsappscacchi\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{488F2955-8F21-46ED-BC8D-059825DA8BC7}|WinFormsAppScacchi\\WinFormsAppScacchi.csproj|c:\\users\\riki\\scacchi-gui\\winformsappscacchi\\winformsappscacchi\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{488F2955-8F21-46ED-BC8D-059825DA8BC7}|WinFormsAppScacchi\\WinFormsAppScacchi.csproj|solutionrelative:winformsappscacchi\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,11 +18,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\riki\\Scacchi-GUI\\WinFormsAppScacchi\\WinFormsAppScacchi\\Form1.Designer.cs",
+              "RelativeDocumentMoniker": "WinFormsAppScacchi\\Form1.Designer.cs",
+              "ToolTip": "C:\\Users\\riki\\Scacchi-GUI\\WinFormsAppScacchi\\WinFormsAppScacchi\\Form1.Designer.cs",
+              "RelativeToolTip": "WinFormsAppScacchi\\Form1.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-04T19:56:51.535Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -28,7 +45,7 @@
               "RelativeDocumentMoniker": "WinFormsAppScacchi\\Form1.cs",
               "ToolTip": "C:\\Users\\riki\\Scacchi-GUI\\WinFormsAppScacchi\\WinFormsAppScacchi\\Form1.cs",
               "RelativeToolTip": "WinFormsAppScacchi\\Form1.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAowDQAAAApAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-04T17:04:57.145Z",
               "EditorCaption": ""

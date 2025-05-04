@@ -6,6 +6,7 @@ using WinFormsLibraryFigure;
 namespace WinFormsAppScacchi;
 public partial class Form1 : Form
 {
+    //commento 123
     private const int size = 8;
     private const int cellSize = 60;
     private const int margin = 30; // spazio per etichette
