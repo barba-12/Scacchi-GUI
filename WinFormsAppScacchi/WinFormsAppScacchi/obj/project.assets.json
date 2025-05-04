@@ -1,11 +1,33 @@
 {
   "version": 3,
   "targets": {
-    "net8.0-windows7.0": {}
+    "net8.0-windows7.0": {
+      "WinFormsLibraryFigure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/WinFormsLibraryFigure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WinFormsLibraryFigure.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "WinFormsLibraryFigure/1.0.0": {
+      "type": "project",
+      "path": "../WinFormsLibraryFigure/WinFormsLibraryFigure.csproj",
+      "msbuildProject": "../WinFormsLibraryFigure/WinFormsLibraryFigure.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net8.0-windows7.0": []
+    "net8.0-windows7.0": [
+      "WinFormsLibraryFigure >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\riki\\.nuget\\packages\\": {},
@@ -38,7 +60,11 @@
       "frameworks": {
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\riki\\Scacchi-GUI\\WinFormsAppScacchi\\WinFormsLibraryFigure\\WinFormsLibraryFigure.csproj": {
+              "projectPath": "C:\\Users\\riki\\Scacchi-GUI\\WinFormsAppScacchi\\WinFormsLibraryFigure\\WinFormsLibraryFigure.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

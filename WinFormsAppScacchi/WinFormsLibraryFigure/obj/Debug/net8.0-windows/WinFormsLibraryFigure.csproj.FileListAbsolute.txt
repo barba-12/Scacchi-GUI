@@ -1,0 +1,12 @@
+C:\Users\riki\Scacchi-GUI\WinFormsAppScacchi\WinFormsLibraryFigure\bin\Debug\net8.0-windows\WinFormsLibraryFigure.deps.json
+C:\Users\riki\Scacchi-GUI\WinFormsAppScacchi\WinFormsLibraryFigure\bin\Debug\net8.0-windows\WinFormsLibraryFigure.dll
+C:\Users\riki\Scacchi-GUI\WinFormsAppScacchi\WinFormsLibraryFigure\bin\Debug\net8.0-windows\WinFormsLibraryFigure.pdb
+C:\Users\riki\Scacchi-GUI\WinFormsAppScacchi\WinFormsLibraryFigure\obj\Debug\net8.0-windows\WinFormsLibraryFigure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\riki\Scacchi-GUI\WinFormsAppScacchi\WinFormsLibraryFigure\obj\Debug\net8.0-windows\WinFormsLibraryFigure.AssemblyInfoInputs.cache
+C:\Users\riki\Scacchi-GUI\WinFormsAppScacchi\WinFormsLibraryFigure\obj\Debug\net8.0-windows\WinFormsLibraryFigure.AssemblyInfo.cs
+C:\Users\riki\Scacchi-GUI\WinFormsAppScacchi\WinFormsLibraryFigure\obj\Debug\net8.0-windows\WinFormsLibraryFigure.csproj.CoreCompileInputs.cache
+C:\Users\riki\Scacchi-GUI\WinFormsAppScacchi\WinFormsLibraryFigure\obj\Debug\net8.0-windows\WinFormsLibraryFigure.sourcelink.json
+C:\Users\riki\Scacchi-GUI\WinFormsAppScacchi\WinFormsLibraryFigure\obj\Debug\net8.0-windows\WinFormsLibraryFigure.dll
+C:\Users\riki\Scacchi-GUI\WinFormsAppScacchi\WinFormsLibraryFigure\obj\Debug\net8.0-windows\refint\WinFormsLibraryFigure.dll
+C:\Users\riki\Scacchi-GUI\WinFormsAppScacchi\WinFormsLibraryFigure\obj\Debug\net8.0-windows\WinFormsLibraryFigure.pdb
+C:\Users\riki\Scacchi-GUI\WinFormsAppScacchi\WinFormsLibraryFigure\obj\Debug\net8.0-windows\ref\WinFormsLibraryFigure.dll

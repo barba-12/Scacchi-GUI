@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WinFormsAppScacchi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ce94f22da221e0354f89f0012423851a4e1d6440")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c3019858a74d75cbd311b52e2789f6d68b4a085c")]
 [assembly: System.Reflection.AssemblyProductAttribute("WinFormsAppScacchi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WinFormsAppScacchi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
