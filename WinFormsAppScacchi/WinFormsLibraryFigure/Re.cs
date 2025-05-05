@@ -19,12 +19,55 @@ public class Re : Figura
         return true == colore ? "♔" : "	♚";
     }
 
-    public override List<List<int>> checkMangia()
+    public override List<List<int>> checkMovimeto(int row, int col)
     {
-        throw new NotImplementedException();
+        List<List<int>> listaCelle = new List<List<int>>();
+
+        if (row + 1 <= 7 && Partita.MatriceScacchiera[row + 1, col] == null) {
+            listaCelle.Add(new List<int>());
+            listaCelle[listaCelle.Count-1].Add(row+1);
+            listaCelle[listaCelle.Count - 1].Add(col);
+        }
+        if (row - 1 >= 0 && Partita.MatriceScacchiera[row - 1, col] == null){
+            listaCelle.Add(new List<int>());
+            listaCelle[listaCelle.Count - 1].Add(row - 1);
+            listaCelle[listaCelle.Count - 1].Add(col);
+        }
+        if (col + 1 <= 7 && Partita.MatriceScacchiera[row, col + 1] == null){
+            listaCelle.Add(new List<int>());
+            listaCelle[listaCelle.Count - 1].Add(row);
+            listaCelle[listaCelle.Count - 1].Add(col + 1);
+        }
+        if (col - 1 >= 0 && Partita.MatriceScacchiera[row, col - 1] == null){
+            listaCelle.Add(new List<int>());
+            listaCelle[listaCelle.Count - 1].Add(row);
+            listaCelle[listaCelle.Count - 1].Add(col - 1);
+        }
+        if ((row + 1 <= 7 && col + 1 <= 7) && Partita.MatriceScacchiera[row + 1, col + 1] == null) {
+            listaCelle.Add(new List<int>());
+            listaCelle[listaCelle.Count - 1].Add(row + 1);
+            listaCelle[listaCelle.Count - 1].Add(col + 1);
+        }
+        if ((row + 1 <= 7 && col - 1 >= 0) && Partita.MatriceScacchiera[row + 1, col - 1] == null) {
+            listaCelle.Add(new List<int>());
+            listaCelle[listaCelle.Count - 1].Add(row + 1);
+            listaCelle[listaCelle.Count - 1].Add(col - 1);
+        }
+        if ((row - 1 >= 0 && col - 1 >= 0) && Partita.MatriceScacchiera[row - 1, col - 1] == null) {
+            listaCelle.Add(new List<int>());
+            listaCelle[listaCelle.Count - 1].Add(row - 1);
+            listaCelle[listaCelle.Count - 1].Add(col - 1);
+        }
+        if ((row - 1 >= 0 && col + 1 <= 7) && Partita.MatriceScacchiera[row - 1, col + 1] == null) {
+            listaCelle.Add(new List<int>());
+            listaCelle[listaCelle.Count - 1].Add(row - 1);
+            listaCelle[listaCelle.Count - 1].Add(col + 1);
+        }
+
+            return listaCelle;
     }
 
-    public override List<List<int>> checkMovimeto(int row, int col)
+    public override List<List<int>> checkMangia()
     {
         throw new NotImplementedException();
     }

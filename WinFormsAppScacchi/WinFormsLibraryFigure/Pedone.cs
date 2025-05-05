@@ -24,45 +24,42 @@ public class Pedone : Figura
         List<List<int>> listaCelle = new List<List<int>>();
         //Console.WriteLine($"row: {row} - col: {col}");
 
-        if((row >= 0 && row <= 7) && (col >= 0 && col <= 7))
+        if (!colore)
         {
-            if (!colore)
+            if ((Partita.MatriceScacchiera[row + 1, col] == null && Partita.MatriceScacchiera[row + 2, col] == null) && (row+1 <= 7 && row + 2 <= 7))
             {
-                if (Partita.MatriceScacchiera[row + 1, col] == null && Partita.MatriceScacchiera[row + 2, col] == null)
-                {
-                    listaCelle.Add(new List<int>());
-                    listaCelle[listaCelle.Count - 1].Add(row + 1);
-                    listaCelle[listaCelle.Count - 1].Add(col);
+                listaCelle.Add(new List<int>());
+                listaCelle[listaCelle.Count - 1].Add(row + 1);
+                listaCelle[listaCelle.Count - 1].Add(col);
 
-                    listaCelle.Add(new List<int>());
-                    listaCelle[listaCelle.Count - 1].Add(row + 2);
-                    listaCelle[listaCelle.Count - 1].Add(col);
-                }
-                else if (Partita.MatriceScacchiera[row + 1, col] == null)
-                {
-                    listaCelle.Add(new List<int>());
-                    listaCelle[listaCelle.Count - 1].Add(row + 1);
-                    listaCelle[listaCelle.Count - 1].Add(col);
-                }
+                listaCelle.Add(new List<int>());
+                listaCelle[listaCelle.Count - 1].Add(row + 2);
+                listaCelle[listaCelle.Count - 1].Add(col);
             }
-            else
+            else if (Partita.MatriceScacchiera[row + 1, col] == null &&  row + 1 <= 7)
             {
-                if (Partita.MatriceScacchiera[row - 1, col] == null && Partita.MatriceScacchiera[row - 2, col] == null)
-                {
-                    listaCelle.Add(new List<int>());
-                    listaCelle[listaCelle.Count - 1].Add(row - 1);
-                    listaCelle[listaCelle.Count - 1].Add(col);
+                listaCelle.Add(new List<int>());
+                listaCelle[listaCelle.Count - 1].Add(row + 1);
+                listaCelle[listaCelle.Count - 1].Add(col);
+            }
+        }
+        else
+        {
+            if ((Partita.MatriceScacchiera[row - 1, col] == null && Partita.MatriceScacchiera[row - 2, col] == null) && (row - 1 >= 0 && row - 2 >= 0))
+            {
+                listaCelle.Add(new List<int>());
+                listaCelle[listaCelle.Count - 1].Add(row - 1);
+                listaCelle[listaCelle.Count - 1].Add(col);
 
-                    listaCelle.Add(new List<int>());
-                    listaCelle[listaCelle.Count - 1].Add(row - 2);
-                    listaCelle[listaCelle.Count - 1].Add(col);
-                }
-                else if (Partita.MatriceScacchiera[row - 1, col] == null)
-                {
-                    listaCelle.Add(new List<int>());
-                    listaCelle[listaCelle.Count - 1].Add(row - 1);
-                    listaCelle[listaCelle.Count - 1].Add(col);
-                }
+                listaCelle.Add(new List<int>());
+                listaCelle[listaCelle.Count - 1].Add(row - 2);
+                listaCelle[listaCelle.Count - 1].Add(col);
+            }
+            else if (Partita.MatriceScacchiera[row - 1, col] == null && row - 1 >= 0)
+            {
+                listaCelle.Add(new List<int>());
+                listaCelle[listaCelle.Count - 1].Add(row - 1);
+                listaCelle[listaCelle.Count - 1].Add(col);
             }
         }
         

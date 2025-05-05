@@ -134,14 +134,16 @@ public partial class FormScacchiGUI : Form
                 clearScacchiera();
                 //controllare cordinate della label cliccata
                 figura = clickedLabel.Tag as Figura;
-                lista = figura.checkMovimeto(cordinate[0], cordinate[1]);
-                cordinateFigura = new List<int>() { cordinate[0], cordinate[1] };
+                if (Partita.Turno == figura.Colore) {
+                    lista = figura.checkMovimeto(cordinate[0], cordinate[1]);
+                    cordinateFigura = new List<int>() { cordinate[0], cordinate[1] };
 
-                foreach (List<int> l in lista)
-                {
-                    Cella cellaVecchia = Partita.MatriceCelle[l[0], l[1]];
-                    //cellaVecchia.Panel.BackColor = Color.Brown;
-                    cellaVecchia.Label.Text = "o";
+                    foreach (List<int> l in lista)
+                    {
+                        Cella cellaVecchia = Partita.MatriceCelle[l[0], l[1]];
+                        //cellaVecchia.Panel.BackColor = Color.Brown;
+                        cellaVecchia.Label.Text = "o";
+                    }
                 }
             }
             else if(clickedLabel.Text == "o")
@@ -158,6 +160,7 @@ public partial class FormScacchiGUI : Form
                 Partita.MatriceCelle[cordinateFigura[0], cordinateFigura[1]].Label.Tag = null;
 
                 clearScacchiera();
+                Partita.cambiaTurno();
                 Console.WriteLine("pedone spostato");
             }
         }
