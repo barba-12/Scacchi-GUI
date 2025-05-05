@@ -18,4 +18,13 @@ public class Torre : Figura
     {
         return true == colore ? "♖" : "♜";
     }
+    public override List<List<int>> checkMangia()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override List<List<int>> checkMovimeto(int row, int col)
+    {
+        throw new NotImplementedException();
+    }
 }
