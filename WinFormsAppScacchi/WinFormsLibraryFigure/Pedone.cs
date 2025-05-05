@@ -22,18 +22,50 @@ public class Pedone : Figura
 
     public override List<List<int>> checkMovimeto(int row, int col) {
         List<List<int>> listaCelle = new List<List<int>>();
+        //Console.WriteLine($"row: {row} - col: {col}");
 
-        if (Partita.MatriceScacchiera[row + 1, col] == null) {
-            listaCelle.Add(new List<int>());
-            listaCelle[listaCelle.Count - 1].Add(row+1);
-            listaCelle[listaCelle.Count - 1].Add(col);
-        }
-        if (Partita.MatriceScacchiera[row + 1, col] == null && Partita.MatriceScacchiera[row + 2, col] == null) {
-            listaCelle.Add(new List<int>());
-            listaCelle[listaCelle.Count - 1].Add(row+2);
-            listaCelle[listaCelle.Count - 1].Add(col);
-        }
+        if((row >= 0 && row <= 7) && (col >= 0 && col <= 7))
+        {
+            if (!colore)
+            {
+                if (Partita.MatriceScacchiera[row + 1, col] == null && Partita.MatriceScacchiera[row + 2, col] == null)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row + 1);
+                    listaCelle[listaCelle.Count - 1].Add(col);
 
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row + 2);
+                    listaCelle[listaCelle.Count - 1].Add(col);
+                }
+                else if (Partita.MatriceScacchiera[row + 1, col] == null)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row + 1);
+                    listaCelle[listaCelle.Count - 1].Add(col);
+                }
+            }
+            else
+            {
+                if (Partita.MatriceScacchiera[row - 1, col] == null && Partita.MatriceScacchiera[row - 2, col] == null)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row - 1);
+                    listaCelle[listaCelle.Count - 1].Add(col);
+
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row - 2);
+                    listaCelle[listaCelle.Count - 1].Add(col);
+                }
+                else if (Partita.MatriceScacchiera[row - 1, col] == null)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row - 1);
+                    listaCelle[listaCelle.Count - 1].Add(col);
+                }
+            }
+        }
+        
         return listaCelle;
     }
 

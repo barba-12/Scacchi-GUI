@@ -58,6 +58,15 @@ namespace WinFormsLibraryFigure
             return label;
         }
 
+        public Label getLabel()
+        {
+            label = new Label();
+            label.Font = new Font("Segoe UI Symbol", 24, FontStyle.Bold);
+            label.TextAlign = ContentAlignment.MiddleCenter;
+            label.Dock = DockStyle.Fill;
+            return label;
+        }
+
         public Figura Figura { get => figura; set => figura = value; }
         public bool Colore { get => colore; set => colore = value; }
         public int CellSize { get => cellSize; set => cellSize = value; }

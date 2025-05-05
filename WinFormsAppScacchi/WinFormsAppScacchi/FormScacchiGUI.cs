@@ -16,6 +16,11 @@ public partial class FormScacchiGUI : Form
     private const int cellSize = 60;
     private const int margin = 30; // spazio per etichette
 
+    //attributi per logica
+    private List<int> cordinateFigura = null;
+    private Figura figura = null;
+    private List<List<int>> lista = null;
+
     public FormScacchiGUI()
     {
         InitializeComponent();
@@ -60,6 +65,7 @@ public partial class FormScacchiGUI : Form
                 Cella cella = new Cella(colore, cellSize, margin, row, col);
                 Partita.MatriceCelle[row, col] = cella;
                 Panel cellaPanel = cella.getPanel();
+                cella.Panel = cellaPanel;
                 this.Controls.Add(cellaPanel);
 
                 Figura pezzo = null;
@@ -102,7 +108,14 @@ public partial class FormScacchiGUI : Form
                 {
                     Partita.MatriceScacchiera[row, col] = pezzo;
                     Label cellaLabel = cella.getLabelFigura(pezzo);
+                    cella.Label = cellaLabel;
                     cellaLabel.Tag = pezzo;
+                    cellaPanel.Controls.Add(cellaLabel);
+                    cellaLabel.Click += CellaLabel_Click;
+                }
+                else {
+                    Label cellaLabel = cella.getLabel();
+                    cella.Label = cellaLabel;
                     cellaPanel.Controls.Add(cellaLabel);
                     cellaLabel.Click += CellaLabel_Click;
                 }
@@ -112,26 +125,58 @@ public partial class FormScacchiGUI : Form
         void CellaLabel_Click(object sender, EventArgs e)
         {
             Label clickedLabel = sender as Label;
-            Figura figura = clickedLabel.Tag as Figura;
+            List<int> cordinate = trovaLabel(clickedLabel);
+            //Console.WriteLine($"x: {cordinate[0]} - y: {cordinate[1]}");
 
-            //funzione checkPosizione(Label){
-            //partita.Label[i, y] == label -> return label
-            //}
-
-            //controllare cordinate della label cliccata
-            List<List<int>> lista = figura.checkMovimeto(1, 0);
-
-            foreach (List<int> l in lista)
+            //Console.WriteLine(clickedLabel.Text);
+            if (clickedLabel.Text != "o" && clickedLabel.Text != "")
             {
-                Cella cellaVecchia = Partita.MatriceCelle[l[0], l[1]];
-                //cellaVecchia.getPanel().Controls.Clear(); // Rimuove la vecchia immagine del pezzo
-                cellaVecchia.Panel.BackColor = Color.Brown;
-                //cellaVecchia.getPanel().Text = "O"; //bisogna mettere il testo alla label delle celle successive alla cella cliccata
+                clearScacchiera();
+                //controllare cordinate della label cliccata
+                figura = clickedLabel.Tag as Figura;
+                lista = figura.checkMovimeto(cordinate[0], cordinate[1]);
+                cordinateFigura = new List<int>() { cordinate[0], cordinate[1] };
 
-                Console.WriteLine(); // Vai a capo dopo ogni coppia
+                foreach (List<int> l in lista)
+                {
+                    Cella cellaVecchia = Partita.MatriceCelle[l[0], l[1]];
+                    //cellaVecchia.Panel.BackColor = Color.Brown;
+                    cellaVecchia.Label.Text = "o";
+                }
             }
+            else if(clickedLabel.Text == "o")
+            {
+                // Sposta la figura nella matrice logica
+                Partita.MatriceScacchiera[cordinate[0], cordinate[1]] = figura;
+                Partita.MatriceScacchiera[cordinateFigura[0], cordinateFigura[1]] = null;
 
-            Console.WriteLine($"{figura.GetSimbolo()}");
+                // Sposta la figura nella GUI
+                Partita.MatriceCelle[cordinate[0], cordinate[1]].Label.Text = figura.GetSimbolo();
+                Partita.MatriceCelle[cordinate[0], cordinate[1]].Label.Tag = figura;
+
+                Partita.MatriceCelle[cordinateFigura[0], cordinateFigura[1]].Label.Text = "";
+                Partita.MatriceCelle[cordinateFigura[0], cordinateFigura[1]].Label.Tag = null;
+
+                clearScacchiera();
+                Console.WriteLine("pedone spostato");
+            }
+        }
+
+        List<int> trovaLabel(Label label) {
+            for (int i = 0; i < Partita.MatriceCelle.GetLength(0); i++)
+            {
+                for (int j = 0; j < Partita.MatriceCelle.GetLength(1); j++)
+                {
+                    if (Partita.MatriceCelle[i, j].Label == label) return new List<int> { i, j };
+                }
+            }
+            return null;
+        }
+
+        void clearScacchiera() {
+            foreach (Cella c in Partita.MatriceCelle) {
+                if (c.Label.Text == "o") c.Label.Text = "";
+            }
         }
 
         /*
