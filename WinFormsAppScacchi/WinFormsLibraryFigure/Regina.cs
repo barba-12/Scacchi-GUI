@@ -18,7 +18,7 @@ public class Regina : Figura
     {
         return true == colore ? "♕" : "♛";
     }
-    public override List<List<int>> checkMovimeto(int row, int col)
+    /*public override List<List<int>> checkMovimeto(int row, int col)
     {
         List<List<int>> listaCelle = new List<List<int>>();
         List<bool> check = new List<bool>() { true, true, true, true, true, true, true, true };
@@ -96,6 +96,11 @@ public class Regina : Figura
         }
 
         return listaCelle;
+    }*/
+
+    public override List<List<List<int>>> checkMovimeto(int row, int col)
+    {
+        throw new NotImplementedException();
     }
 
     public override List<List<int>> checkMangia()

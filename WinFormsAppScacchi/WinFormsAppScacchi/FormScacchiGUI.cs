@@ -19,7 +19,7 @@ public partial class FormScacchiGUI : Form
     //attributi per logica
     private List<int> cordinateFigura = null;
     private Figura figura = null;
-    private List<List<int>> lista = null;
+    private List<List<List<int>>> lista = null;
 
     public FormScacchiGUI()
     {
@@ -77,6 +77,7 @@ public partial class FormScacchiGUI : Form
                 {
                     pezzo = new Pedone(isBianco);
                 }
+
                 // RIGA 0 e RIGA 7 → pezzi maggiori
                 else if (row == 0 || row == 7)
                 {
@@ -138,16 +139,27 @@ public partial class FormScacchiGUI : Form
                     lista = figura.checkMovimeto(cordinate[0], cordinate[1]);
                     cordinateFigura = new List<int>() { cordinate[0], cordinate[1] };
 
-                    foreach (List<int> l in lista)
+                    foreach (List<int> l in lista[0])
                     {
                         Cella cellaVecchia = Partita.MatriceCelle[l[0], l[1]];
                         //cellaVecchia.Panel.BackColor = Color.Brown;
                         cellaVecchia.Label.Text = "o";
                     }
+
+                    foreach (List<int> l in lista[1])
+                    {
+                        Console.WriteLine($"x: {l[0]} , y: {l[1]}");
+                    }
                 }
             }
             else if(clickedLabel.Text == "o")
             {
+                //controllo che sia un pedono e cambio la prima mossa su false
+                if (figura.GetSimbolo() == "♙" || figura.GetSimbolo() == "♟") {
+                    Pedone p = (Pedone) figura;
+                    p.ChangeFirstMove();
+                }
+
                 // Sposta la figura nella matrice logica
                 Partita.MatriceScacchiera[cordinate[0], cordinate[1]] = figura;
                 Partita.MatriceScacchiera[cordinateFigura[0], cordinateFigura[1]] = null;

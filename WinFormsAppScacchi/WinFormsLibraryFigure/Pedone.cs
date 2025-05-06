@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing.Design;
 using System.Drawing.Text;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,6 +11,7 @@ namespace WinFormsLibraryFigure;
 public class Pedone : Figura
 {
     private bool colore;
+    private bool firstMove = true;
 
     public Pedone(bool colore) : base(colore) {
         this.colore = colore;
@@ -20,13 +22,13 @@ public class Pedone : Figura
         return true == colore ? "♙" : "♟";
     }
 
-    public override List<List<int>> checkMovimeto(int row, int col) {
+    /*public override List<List<int>> checkMovimeto(int row, int col) {
         List<List<int>> listaCelle = new List<List<int>>();
         //Console.WriteLine($"row: {row} - col: {col}");
 
         if (!colore)
         {
-            if ((Partita.MatriceScacchiera[row + 1, col] == null && Partita.MatriceScacchiera[row + 2, col] == null) && (row+1 <= 7 && row + 2 <= 7))
+            if ((Partita.MatriceScacchiera[row + 1, col] == null && Partita.MatriceScacchiera[row + 2, col] == null) && (row+1 <= 7 && row + 2 <= 7) && firstMove)
             {
                 listaCelle.Add(new List<int>());
                 listaCelle[listaCelle.Count - 1].Add(row + 1);
@@ -45,7 +47,7 @@ public class Pedone : Figura
         }
         else
         {
-            if ((Partita.MatriceScacchiera[row - 1, col] == null && Partita.MatriceScacchiera[row - 2, col] == null) && (row - 1 >= 0 && row - 2 >= 0))
+            if ((Partita.MatriceScacchiera[row - 1, col] == null && Partita.MatriceScacchiera[row - 2, col] == null) && (row - 1 >= 0 && row - 2 >= 0) && firstMove)
             {
                 listaCelle.Add(new List<int>());
                 listaCelle[listaCelle.Count - 1].Add(row - 1);
@@ -64,6 +66,15 @@ public class Pedone : Figura
         }
         
         return listaCelle;
+    }*/
+
+    public override List<List<List<int>>> checkMovimeto(int row, int col)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void ChangeFirstMove() {
+        firstMove = false;
     }
 
     public override List<List<int>> checkMangia()
