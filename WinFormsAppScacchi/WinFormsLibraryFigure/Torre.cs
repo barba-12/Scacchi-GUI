@@ -97,6 +97,11 @@ public class Torre : Figura
 
         return listaOutput;
     }
+
+    public override int getPunteggio()
+    {
+        return 5;
+    }
     public override List<List<int>> checkMangia()
     {
         throw new NotImplementedException();

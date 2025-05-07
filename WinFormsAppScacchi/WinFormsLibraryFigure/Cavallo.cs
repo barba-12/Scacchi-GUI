@@ -190,6 +190,11 @@ public class Cavallo : Figura
 
         return listaOutput;
     }
+
+    public override int getPunteggio()
+    {
+        return 3;
+    }
     public override List<List<int>> checkMangia()
     {
         throw new NotImplementedException();

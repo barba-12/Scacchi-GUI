@@ -265,6 +265,11 @@ public class Regina : Figura
         return listaOutput;
     }
 
+    public override int getPunteggio()
+    {
+        return 9;
+    }
+
     public override List<List<int>> checkMangia()
     {
         throw new NotImplementedException();

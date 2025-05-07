@@ -181,16 +181,16 @@ public partial class FormScacchiGUI : Form
                 Console.WriteLine("figura spostata");
             }
             else if (clickedLabel.Text == "m") {
+                //aggiungo il punteggio
+                Figura figuraMangiata = Partita.MatriceScacchiera[cordinate[0], cordinate[1]];
+                if (figuraMangiata.Colore) Partita.AddScoreBlack(figuraMangiata.getPunteggio());
+                else Partita.AddScoreWhite(figuraMangiata.getPunteggio());
+
+                //Console.WriteLine(Partita.ScoreBlack);
+                //Console.WriteLine(Partita.ScoreWhite);
+
                 // Sposta la figura nella matrice logica
                 Partita.MatriceScacchiera[cordinate[0], cordinate[1]] = figura;
-
-                Figura figuraMangiata = Partita.MatriceScacchiera[cordinateFigura[0], cordinateFigura[1]];
-
-                if (figuraMangiata.GetSimbolo() == "♙") Partita.AddScoreBlack(1);
-                else if (figuraMangiata.GetSimbolo() == "♟") Partita.AddScoreWhite(1);
-                else if (figuraMangiata.GetSimbolo() == "♖") Partita.AddScoreBlack(5);
-                else if (figuraMangiata.GetSimbolo() == "♜") Partita.AddScoreWhite(5);
-
                 Partita.MatriceScacchiera[cordinateFigura[0], cordinateFigura[1]] = null;
 
                 // Sposta la figura nella GUI

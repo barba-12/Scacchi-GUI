@@ -149,6 +149,11 @@ public class Pedone : Figura
         firstMove = false;
     }
 
+    public override int getPunteggio()
+    {
+        return 1;
+    }
+
     public override List<List<int>> checkMangia()
     {
         throw new NotImplementedException();

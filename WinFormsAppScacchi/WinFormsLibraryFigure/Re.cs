@@ -176,6 +176,11 @@ public class Re : Figura
         return listaOutput;
     }
 
+    public override int getPunteggio()
+    {
+        return 0;
+    }
+
     public override List<List<int>> checkMangia()
     {
         throw new NotImplementedException();
