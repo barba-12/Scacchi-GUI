@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,6 +13,8 @@ namespace WinFormsLibraryFigure
         private static Figura[,] matriceScacchiera = new Figura[8, 8];
         private static Cella[,] matriceCelle = new Cella[8, 8];
         private static bool turno = true;
+        private static int scoreBlack = 0;
+        private static int scoreWhite = 0;
 
         // Proprietà per accedere alla matrice
         public static Cella[,] MatriceCelle
@@ -27,6 +30,23 @@ namespace WinFormsLibraryFigure
         public static bool Turno 
         {
             get { return turno; }
+        }
+        public static int ScoreBlack
+        {
+            get { return scoreBlack; }
+        }
+
+        public static int ScoreWhite
+        {
+            get { return scoreWhite; }
+        }
+
+        public static void AddScoreWhite(int score) {
+            scoreWhite += score;
+        }
+        public static void AddScoreBlack(int score)
+        {
+            scoreBlack += score;
         }
 
         public static void cambiaTurno() {

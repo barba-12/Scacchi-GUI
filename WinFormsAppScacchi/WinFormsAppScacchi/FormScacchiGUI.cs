@@ -130,12 +130,13 @@ public partial class FormScacchiGUI : Form
             //Console.WriteLine($"x: {cordinate[0]} - y: {cordinate[1]}");
 
             //Console.WriteLine(clickedLabel.Text);
-            if (clickedLabel.Text != "o" && clickedLabel.Text != "")
+            if (clickedLabel.Text != "o" && clickedLabel.Text != "" && clickedLabel.Text != "m")
             {
                 clearScacchiera();
                 //controllare cordinate della label cliccata
                 figura = clickedLabel.Tag as Figura;
-                if (Partita.Turno == figura.Colore) {
+                if (Partita.Turno == figura.Colore)
+                {
                     lista = figura.checkMovimeto(cordinate[0], cordinate[1]);
                     cordinateFigura = new List<int>() { cordinate[0], cordinate[1] };
 
@@ -148,15 +149,19 @@ public partial class FormScacchiGUI : Form
 
                     foreach (List<int> l in lista[1])
                     {
-                        Console.WriteLine($"x: {l[0]} , y: {l[1]}");
+                        Cella cellaVecchia = Partita.MatriceCelle[l[0], l[1]];
+                        Figura f = Partita.MatriceScacchiera[l[0], l[1]];
+                        //cellaVecchia.Panel.BackColor = Color.Brown;
+                        cellaVecchia.Label.Text = "m"; //trovare simbolo UTF-8 per indicare la possibilita di mangiare la figura
                     }
                 }
             }
-            else if(clickedLabel.Text == "o")
+            else if (clickedLabel.Text == "o")
             {
                 //controllo che sia un pedono e cambio la prima mossa su false
-                if (figura.GetSimbolo() == "♙" || figura.GetSimbolo() == "♟") {
-                    Pedone p = (Pedone) figura;
+                if (figura.GetSimbolo() == "♙" || figura.GetSimbolo() == "♟")
+                {
+                    Pedone p = (Pedone)figura;
                     p.ChangeFirstMove();
                 }
 
@@ -173,7 +178,31 @@ public partial class FormScacchiGUI : Form
 
                 clearScacchiera();
                 Partita.cambiaTurno();
-                Console.WriteLine("pedone spostato");
+                Console.WriteLine("figura spostata");
+            }
+            else if (clickedLabel.Text == "m") {
+                // Sposta la figura nella matrice logica
+                Partita.MatriceScacchiera[cordinate[0], cordinate[1]] = figura;
+
+                Figura figuraMangiata = Partita.MatriceScacchiera[cordinateFigura[0], cordinateFigura[1]];
+
+                if (figuraMangiata.GetSimbolo() == "♙") Partita.AddScoreBlack(1);
+                else if (figuraMangiata.GetSimbolo() == "♟") Partita.AddScoreWhite(1);
+                else if (figuraMangiata.GetSimbolo() == "♖") Partita.AddScoreBlack(5);
+                else if (figuraMangiata.GetSimbolo() == "♜") Partita.AddScoreWhite(5);
+
+                Partita.MatriceScacchiera[cordinateFigura[0], cordinateFigura[1]] = null;
+
+                // Sposta la figura nella GUI
+                Partita.MatriceCelle[cordinate[0], cordinate[1]].Label.Text = figura.GetSimbolo();
+                Partita.MatriceCelle[cordinate[0], cordinate[1]].Label.Tag = figura;
+
+                Partita.MatriceCelle[cordinateFigura[0], cordinateFigura[1]].Label.Text = "";
+                Partita.MatriceCelle[cordinateFigura[0], cordinateFigura[1]].Label.Tag = null;
+
+                clearScacchiera();
+                Partita.cambiaTurno();
+                Console.WriteLine("figura mangiata");
             }
         }
 
@@ -190,7 +219,8 @@ public partial class FormScacchiGUI : Form
 
         void clearScacchiera() {
             foreach (Cella c in Partita.MatriceCelle) {
-                if (c.Label.Text == "o") c.Label.Text = "";
+                if(c.Label.Text == "m") c.Label.Text = Partita.MatriceScacchiera[trovaLabel(c.Label)[0], trovaLabel(c.Label)[1]].GetSimbolo();
+                if(c.Label.Text == "o") c.Label.Text = "";
             }
         }
 
