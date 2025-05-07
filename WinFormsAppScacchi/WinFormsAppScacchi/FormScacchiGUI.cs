@@ -30,29 +30,6 @@ public partial class FormScacchiGUI : Form
 
     private void CreaScacchieraConPanel()
     {
-        // Lettere colonne (A-H)
-        /*
-        for (int col = 0; col < size; col++)
-        {
-            Label lettera = new Label();
-            lettera.Text = ((char)('A' + col)).ToString();
-            lettera.TextAlign = ContentAlignment.MiddleCenter;
-            lettera.Size = new Size(cellSize, margin);
-            lettera.Location = new Point(margin + col * cellSize, 0);
-            this.Controls.Add(lettera);
-        }
-
-        // Numeri righe (1-8)
-        for (int row = 0; row < size; row++)
-        {
-            Label numero = new Label();
-            numero.Text = (size - row).ToString(); // 8 in alto, 1 in basso
-            numero.TextAlign = ContentAlignment.MiddleCenter;
-            numero.Size = new Size(margin, cellSize);
-            numero.Location = new Point(0, margin + row * cellSize);
-            this.Controls.Add(numero);
-        }*/
-
         // Caselle della scacchiera
         for (int row = 0; row < size; row++)
         {
@@ -104,7 +81,7 @@ public partial class FormScacchiGUI : Form
                     }
                 }
 
-                // Se c'è un pezzo, aggiungilo con simbolo
+                // Se c'è un pezzo si aggiugne alla scacchiera
                 if (pezzo != null)
                 {
                     Partita.MatriceScacchiera[row, col] = pezzo;
@@ -130,8 +107,39 @@ public partial class FormScacchiGUI : Form
             //Console.WriteLine($"x: {cordinate[0]} - y: {cordinate[1]}");
 
             //Console.WriteLine(clickedLabel.Text);
-            if (clickedLabel.Text != "o" && clickedLabel.Text != "" && clickedLabel.Text != "m")
+            if (clickedLabel.Text == "o" || clickedLabel.Text == "m")
             {
+                //controllo che sia un pedono e cambio la prima mossa su false
+                if (figura.GetSimbolo() == "♙" || figura.GetSimbolo() == "♟")
+                {
+                    Pedone p = (Pedone)figura;
+                    p.ChangeFirstMove();
+                }
+
+                //controllo se mangia una figura aggiurno il punteggio
+                if (clickedLabel.Text == "m")
+                {
+                    Figura figuraMangiata = Partita.MatriceScacchiera[cordinate[0], cordinate[1]];
+                    if (figuraMangiata.Colore) Partita.AddScoreBlack(figuraMangiata.getPunteggio());
+                    else Partita.AddScoreWhite(figuraMangiata.getPunteggio());
+                }
+
+                // Sposta la figura nella matrice logica
+                Partita.MatriceScacchiera[cordinate[0], cordinate[1]] = figura;
+                Partita.MatriceScacchiera[cordinateFigura[0], cordinateFigura[1]] = null;
+
+                // Sposta la figura nella GUI
+                Partita.MatriceCelle[cordinate[0], cordinate[1]].Label.Text = figura.GetSimbolo();
+                Partita.MatriceCelle[cordinate[0], cordinate[1]].Label.Tag = figura;
+
+                Partita.MatriceCelle[cordinateFigura[0], cordinateFigura[1]].Label.Text = "";
+                Partita.MatriceCelle[cordinateFigura[0], cordinateFigura[1]].Label.Tag = null;
+
+                clearScacchiera();
+                Partita.cambiaTurno();
+                Console.WriteLine("figura spostata/mangiata");
+            }
+            else if (clickedLabel.Text != "") {
                 clearScacchiera();
                 //controllare cordinate della label cliccata
                 figura = clickedLabel.Tag as Figura;
@@ -143,66 +151,15 @@ public partial class FormScacchiGUI : Form
                     foreach (List<int> l in lista[0])
                     {
                         Cella cellaVecchia = Partita.MatriceCelle[l[0], l[1]];
-                        //cellaVecchia.Panel.BackColor = Color.Brown;
                         cellaVecchia.Label.Text = "o";
                     }
 
                     foreach (List<int> l in lista[1])
                     {
                         Cella cellaVecchia = Partita.MatriceCelle[l[0], l[1]];
-                        Figura f = Partita.MatriceScacchiera[l[0], l[1]];
-                        //cellaVecchia.Panel.BackColor = Color.Brown;
-                        cellaVecchia.Label.Text = "m"; //trovare simbolo UTF-8 per indicare la possibilita di mangiare la figura
+                        cellaVecchia.Label.Text = "m"; //TODO: trovare simbolo UTF-8 per indicare la possibilita di mangiare la figura
                     }
                 }
-            }
-            else if (clickedLabel.Text == "o")
-            {
-                //controllo che sia un pedono e cambio la prima mossa su false
-                if (figura.GetSimbolo() == "♙" || figura.GetSimbolo() == "♟")
-                {
-                    Pedone p = (Pedone)figura;
-                    p.ChangeFirstMove();
-                }
-
-                // Sposta la figura nella matrice logica
-                Partita.MatriceScacchiera[cordinate[0], cordinate[1]] = figura;
-                Partita.MatriceScacchiera[cordinateFigura[0], cordinateFigura[1]] = null;
-
-                // Sposta la figura nella GUI
-                Partita.MatriceCelle[cordinate[0], cordinate[1]].Label.Text = figura.GetSimbolo();
-                Partita.MatriceCelle[cordinate[0], cordinate[1]].Label.Tag = figura;
-
-                Partita.MatriceCelle[cordinateFigura[0], cordinateFigura[1]].Label.Text = "";
-                Partita.MatriceCelle[cordinateFigura[0], cordinateFigura[1]].Label.Tag = null;
-
-                clearScacchiera();
-                Partita.cambiaTurno();
-                Console.WriteLine("figura spostata");
-            }
-            else if (clickedLabel.Text == "m") {
-                //aggiungo il punteggio
-                Figura figuraMangiata = Partita.MatriceScacchiera[cordinate[0], cordinate[1]];
-                if (figuraMangiata.Colore) Partita.AddScoreBlack(figuraMangiata.getPunteggio());
-                else Partita.AddScoreWhite(figuraMangiata.getPunteggio());
-
-                //Console.WriteLine(Partita.ScoreBlack);
-                //Console.WriteLine(Partita.ScoreWhite);
-
-                // Sposta la figura nella matrice logica
-                Partita.MatriceScacchiera[cordinate[0], cordinate[1]] = figura;
-                Partita.MatriceScacchiera[cordinateFigura[0], cordinateFigura[1]] = null;
-
-                // Sposta la figura nella GUI
-                Partita.MatriceCelle[cordinate[0], cordinate[1]].Label.Text = figura.GetSimbolo();
-                Partita.MatriceCelle[cordinate[0], cordinate[1]].Label.Tag = figura;
-
-                Partita.MatriceCelle[cordinateFigura[0], cordinateFigura[1]].Label.Text = "";
-                Partita.MatriceCelle[cordinateFigura[0], cordinateFigura[1]].Label.Tag = null;
-
-                clearScacchiera();
-                Partita.cambiaTurno();
-                Console.WriteLine("figura mangiata");
             }
         }
 
@@ -223,17 +180,6 @@ public partial class FormScacchiGUI : Form
                 if(c.Label.Text == "o") c.Label.Text = "";
             }
         }
-
-        /*
-        // Rimuovere la figura dalla vecchia posizione
-        Cella cellaVecchia = TrovaCella(fromRow, fromCol);
-        cellaVecchia.getPanel().Controls.Clear(); // Rimuove la vecchia immagine del pezzo
-
-        // Posizionare la figura nella nuova posizione
-        Cella cellaNuova = TrovaCella(toRow, toCol);
-        Label nuovaCellaLabel = cellaNuova.getLabelFigura(pezzoDaSpostare);
-        cellaNuova.getPanel().Controls.Add(nuovaCellaLabel);
-        */
 
         // Dimensione totale del form
         this.ClientSize = new Size((margin + size * cellSize)+50, (margin + size * cellSize)+50);

@@ -22,51 +22,15 @@ public class Pedone : Figura
         return true == colore ? "♙" : "♟";
     }
 
-    /*public override List<List<int>> checkMovimeto(int row, int col) {
-        List<List<int>> listaCelle = new List<List<int>>();
-        //Console.WriteLine($"row: {row} - col: {col}");
+    public override int getPunteggio()
+    {
+        return 1;
+    }
 
-        if (!colore)
-        {
-            if ((Partita.MatriceScacchiera[row + 1, col] == null && Partita.MatriceScacchiera[row + 2, col] == null) && (row+1 <= 7 && row + 2 <= 7) && firstMove)
-            {
-                listaCelle.Add(new List<int>());
-                listaCelle[listaCelle.Count - 1].Add(row + 1);
-                listaCelle[listaCelle.Count - 1].Add(col);
-
-                listaCelle.Add(new List<int>());
-                listaCelle[listaCelle.Count - 1].Add(row + 2);
-                listaCelle[listaCelle.Count - 1].Add(col);
-            }
-            else if (Partita.MatriceScacchiera[row + 1, col] == null &&  row + 1 <= 7)
-            {
-                listaCelle.Add(new List<int>());
-                listaCelle[listaCelle.Count - 1].Add(row + 1);
-                listaCelle[listaCelle.Count - 1].Add(col);
-            }
-        }
-        else
-        {
-            if ((Partita.MatriceScacchiera[row - 1, col] == null && Partita.MatriceScacchiera[row - 2, col] == null) && (row - 1 >= 0 && row - 2 >= 0) && firstMove)
-            {
-                listaCelle.Add(new List<int>());
-                listaCelle[listaCelle.Count - 1].Add(row - 1);
-                listaCelle[listaCelle.Count - 1].Add(col);
-
-                listaCelle.Add(new List<int>());
-                listaCelle[listaCelle.Count - 1].Add(row - 2);
-                listaCelle[listaCelle.Count - 1].Add(col);
-            }
-            else if (Partita.MatriceScacchiera[row - 1, col] == null && row - 1 >= 0)
-            {
-                listaCelle.Add(new List<int>());
-                listaCelle[listaCelle.Count - 1].Add(row - 1);
-                listaCelle[listaCelle.Count - 1].Add(col);
-            }
-        }
-        
-        return listaCelle;
-    }*/
+    public void ChangeFirstMove()
+    {
+        firstMove = false;
+    }
 
     public override List<List<List<int>>> checkMovimeto(int row, int col)
     {
@@ -143,19 +107,5 @@ public class Pedone : Figura
         listaOutput.Add(listaCelleMangiabili);
 
         return listaOutput;
-    }
-
-    public void ChangeFirstMove() {
-        firstMove = false;
-    }
-
-    public override int getPunteggio()
-    {
-        return 1;
-    }
-
-    public override List<List<int>> checkMangia()
-    {
-        throw new NotImplementedException();
     }
 }

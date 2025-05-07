@@ -8,6 +8,17 @@ namespace WinFormsLibraryFigure;
 public class Cavallo : Figura
 {
     private bool colore;
+    private List<List<int>> cordinateMovimento = new List<List<int>>()
+        {
+            new List<int> { 2, 1 },
+            new List<int> { 2, -1 },
+            new List<int> { -2, 1 },
+            new List<int> { -2, -1 },
+            new List<int> { 1, 2 },
+            new List<int> { -1, 2 },
+            new List<int> { 1, -2 },
+            new List<int> { -1, -2 },
+        };
 
     public Cavallo(bool colore) : base(colore)
     {
@@ -18,170 +29,31 @@ public class Cavallo : Figura
     {
         return true == colore ? "♘" : "♞";
     }
-
-    /* public override List<List<int>> checkMovimeto(int row, int col)
-     {
-         List<List<int>> listaCelle = new List<List<int>>();
-         //Console.WriteLine($"row: {row} - col: {col}");
-
-         if ((row + 2 <= 7 && col + 1 <= 7) && Partita.MatriceScacchiera[row + 2, col + 1] == null){
-             listaCelle.Add(new List<int>());
-             listaCelle[listaCelle.Count-1].Add(row + 2);
-             listaCelle[listaCelle.Count - 1].Add(col + 1);
-         }
-
-         if ((row + 2 <= 7 && col - 1 >= 0) && Partita.MatriceScacchiera[row + 2, col - 1] == null) {
-             listaCelle.Add(new List<int>());
-             listaCelle[listaCelle.Count - 1].Add(row + 2);
-             listaCelle[listaCelle.Count - 1].Add(col - 1);
-         }
-
-         if ((row - 2 >= 0 && col + 1 <= 7) && Partita.MatriceScacchiera[row - 2, col + 1] == null){
-             listaCelle.Add(new List<int>());
-             listaCelle[listaCelle.Count - 1].Add(row - 2);
-             listaCelle[listaCelle.Count - 1].Add(col + 1);
-         }
-
-         if ((row - 2 >= 0 && col - 1 >= 0) && Partita.MatriceScacchiera[row - 2, col - 1] == null) {
-             listaCelle.Add(new List<int>());
-             listaCelle[listaCelle.Count - 1].Add(row - 2);
-             listaCelle[listaCelle.Count - 1].Add(col - 1);
-         }
-
-         if ((row + 1 <= 7 && col + 2 <= 7) && Partita.MatriceScacchiera[row + 1, col + 2] == null) {
-             listaCelle.Add(new List<int>());
-             listaCelle[listaCelle.Count - 1].Add(row + 1);
-             listaCelle[listaCelle.Count - 1].Add(col + 2);
-         }
-
-         if ((row - 1 >= 0 && col + 2 <= 7) && Partita.MatriceScacchiera[row - 1, col + 2] == null) {
-             listaCelle.Add(new List<int>());
-             listaCelle[listaCelle.Count - 1].Add(row - 1);
-             listaCelle[listaCelle.Count - 1].Add(col + 2);
-         }
-
-         if ((row + 1 <= 7 && col - 2 >= 0) && Partita.MatriceScacchiera[row + 1, col - 2] == null) {
-             listaCelle.Add(new List<int>());
-             listaCelle[listaCelle.Count - 1].Add(row + 1);
-             listaCelle[listaCelle.Count - 1].Add(col - 2);
-         }
-
-         if ((row - 1 >= 0 && col - 2 >= 0) && Partita.MatriceScacchiera[row - 1, col - 2] == null) {
-             listaCelle.Add(new List<int>());
-             listaCelle[listaCelle.Count - 1].Add(row - 1);
-             listaCelle[listaCelle.Count - 1].Add(col - 2);
-         }
-
-         return listaCelle;
-     }*/
-
+    public override int getPunteggio()
+    {
+        return 3;
+    }
     public override List<List<List<int>>> checkMovimeto(int row, int col)
     {
         List<List<int>> listaCelle = new List<List<int>>();
         List<List<int>> listaCelleMangiabili = new List<List<int>>();
 
-
-        if ((row + 2 <= 7 && col + 1 <= 7) && Partita.MatriceScacchiera[row + 2, col + 1] == null)
+        foreach (List<int> l in cordinateMovimento)
         {
-            listaCelle.Add(new List<int>());
-            listaCelle[listaCelle.Count - 1].Add(row + 2);
-            listaCelle[listaCelle.Count - 1].Add(col + 1);
-        }
-        else if ((row + 2 <= 7 && col + 1 <= 7) && Partita.MatriceScacchiera[row + 2, col + 1] != null && Partita.MatriceScacchiera[row + 2, col + 1].Colore != colore) {
-            listaCelleMangiabili.Add(new List<int>());
-            listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(row + 2);
-            listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(col + 1);
-        }
-
-        if ((row + 2 <= 7 && col - 1 >= 0) && Partita.MatriceScacchiera[row + 2, col - 1] == null)
-        {
-            listaCelle.Add(new List<int>());
-            listaCelle[listaCelle.Count - 1].Add(row + 2);
-            listaCelle[listaCelle.Count - 1].Add(col - 1);
-        }
-        else if ((row + 2 <= 7 && col - 1 >= 0) && Partita.MatriceScacchiera[row + 2, col - 1] != null && Partita.MatriceScacchiera[row + 2, col - 1].Colore != colore)
-        {
-            listaCelleMangiabili.Add(new List<int>());
-            listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(row + 2);
-            listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(col - 1);
-        }
-
-        if ((row - 2 >= 0 && col + 1 <= 7) && Partita.MatriceScacchiera[row - 2, col + 1] == null)
-        {
-            listaCelle.Add(new List<int>());
-            listaCelle[listaCelle.Count - 1].Add(row - 2);
-            listaCelle[listaCelle.Count - 1].Add(col + 1);
-        }
-        else if ((row - 2 >= 0 && col + 1 <= 7) && Partita.MatriceScacchiera[row - 2, col + 1] != null && Partita.MatriceScacchiera[row - 2, col + 1].Colore != colore)
-        {
-            listaCelleMangiabili.Add(new List<int>());
-            listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(row - 2);
-            listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(col + 1);
-        }
-
-        if ((row - 2 >= 0 && col - 1 >= 0) && Partita.MatriceScacchiera[row - 2, col - 1] == null)
-        {
-            listaCelle.Add(new List<int>());
-            listaCelle[listaCelle.Count - 1].Add(row - 2);
-            listaCelle[listaCelle.Count - 1].Add(col - 1);
-        }
-        else if ((row - 2 >= 0 && col - 1 >= 0) && Partita.MatriceScacchiera[row - 2, col - 1] != null && Partita.MatriceScacchiera[row - 2, col - 1].Colore != colore)
-        {
-            listaCelleMangiabili.Add(new List<int>());
-            listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(row - 2);
-            listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(col - 1);
-        }
-
-        if ((row + 1 <= 7 && col + 2 <= 7) && Partita.MatriceScacchiera[row + 1, col + 2] == null)
-        {
-            listaCelle.Add(new List<int>());
-            listaCelle[listaCelle.Count - 1].Add(row + 1);
-            listaCelle[listaCelle.Count - 1].Add(col + 2);
-        }
-        else if ((row + 1 <= 7 && col + 2 <= 7) && Partita.MatriceScacchiera[row + 1, col + 2] != null && Partita.MatriceScacchiera[row + 1, col + 2].Colore != colore)
-        {
-            listaCelleMangiabili.Add(new List<int>());
-            listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(row + 1);
-            listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(col + 2);
-        }
-
-        if ((row - 1 >= 0 && col + 2 <= 7) && Partita.MatriceScacchiera[row - 1, col + 2] == null)
-        {
-            listaCelle.Add(new List<int>());
-            listaCelle[listaCelle.Count - 1].Add(row - 1);
-            listaCelle[listaCelle.Count - 1].Add(col + 2);
-        }
-        else if ((row - 1 >= 0 && col + 2 <= 7) && Partita.MatriceScacchiera[row - 1, col + 2] != null && Partita.MatriceScacchiera[row - 1, col + 2].Colore != colore)
-        {
-            listaCelleMangiabili.Add(new List<int>());
-            listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(row - 1);
-            listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(col + 2);
-        }
-
-        if ((row + 1 <= 7 && col - 2 >= 0) && Partita.MatriceScacchiera[row + 1, col - 2] == null)
-        {
-            listaCelle.Add(new List<int>());
-            listaCelle[listaCelle.Count - 1].Add(row + 1);
-            listaCelle[listaCelle.Count - 1].Add(col - 2);
-        }
-        else if ((row + 1 <= 7 && col - 2 >= 0) && Partita.MatriceScacchiera[row + 1, col - 2] != null && Partita.MatriceScacchiera[row + 1, col - 2].Colore != colore)
-        {
-            listaCelleMangiabili.Add(new List<int>());
-            listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(row + 1);
-            listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(col - 2);
-        }
-
-        if ((row - 1 >= 0 && col - 2 >= 0) && Partita.MatriceScacchiera[row - 1, col - 2] == null)
-        {
-            listaCelle.Add(new List<int>());
-            listaCelle[listaCelle.Count - 1].Add(row - 1);
-            listaCelle[listaCelle.Count - 1].Add(col - 2);
-        }
-        else if ((row - 1 >= 0 && col - 2 >= 0) && Partita.MatriceScacchiera[row - 1, col - 2] != null && Partita.MatriceScacchiera[row - 1, col - 2].Colore != colore)
-        {
-            listaCelleMangiabili.Add(new List<int>());
-            listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(row - 1);
-            listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(col - 2);
+            if ((row + l[0] <= 7 && row + l[0] >= 0) && (col + l[1] <= 7 && col + l[1] >= 0)) {
+                if (Partita.MatriceScacchiera[row + l[0], col + l[1]] == null)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row + l[0]);
+                    listaCelle[listaCelle.Count - 1].Add(col + l[1]);
+                }
+                else if (Partita.MatriceScacchiera[row + l[0], col + l[1]].Colore != colore)
+                {
+                    listaCelleMangiabili.Add(new List<int>());
+                    listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(row + l[0]);
+                    listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(col + l[1]);
+                }
+            }
         }
 
         List<List<List<int>>> listaOutput = new List<List<List<int>>>();
@@ -190,14 +62,4 @@ public class Cavallo : Figura
 
         return listaOutput;
     }
-
-    public override int getPunteggio()
-    {
-        return 3;
-    }
-    public override List<List<int>> checkMangia()
-    {
-        throw new NotImplementedException();
-    }
-
 }
