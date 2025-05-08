@@ -58,6 +58,13 @@ public class Re : Figura
             }
         }
 
+        //aggiungere attributo bool protetto(verifico se qualche figura dello stesso segno "lo puo mangiare")
+        //se faccio metodi checkProtezione (verifica se è protetto da una figura del stesso segno) nel caso il re non puo mangiare la figura
+
+        //verificare che in diagonale non ci siano afieri, regine di colore opposto, e in colonne e righe non ci siano torri o regine, cavalli, pedoni, re.
+        //(se ci sono figure che metttono sotto scacco il re devo abbligare il giocatore a muovere il re o mangiare la figura che ha messo in scacco il re)
+        //invece se controllo che ci sia una figura che potrebbe mangiare il re se si spostasse nella cella di movimento della figura elimino le cordinate dalla lista
+
         List<List<List<int>>> listaOutput = new List<List<List<int>>>();
         listaOutput.Add(listaCelle);
         listaOutput.Add(listaCelleMangiabili);

@@ -108,4 +108,6 @@ public class Pedone : Figura
 
         return listaOutput;
     }
+
+    //metodo check scacco che utlizza checkMovimento per conforntare le figure in linea per essere mangiate per contriollare se ci sia il re del colore opposto
 }
