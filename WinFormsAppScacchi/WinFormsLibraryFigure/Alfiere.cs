@@ -49,6 +49,12 @@ public class Alfiere : Figura
                         listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(row + i);
                         listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(col + i);
                     }
+                    else if (movimento && Partita.MatriceScacchiera[row + i, col + i].Colore == colore)
+                    {
+                        listaCelle.Add(new List<int>());
+                        listaCelle[listaCelle.Count - 1].Add(row + i);
+                        listaCelle[listaCelle.Count - 1].Add(col + i);
+                    }
                     checkDiagonale[0] = false;
                 }
             }
@@ -68,6 +74,12 @@ public class Alfiere : Figura
                         listaCelleMangiabili.Add(new List<int>());
                         listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(row - i);
                         listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(col - i);
+                    }
+                    else if (movimento && Partita.MatriceScacchiera[row - i, col - i].Colore == colore)
+                    {
+                        listaCelle.Add(new List<int>());
+                        listaCelle[listaCelle.Count - 1].Add(row - i);
+                        listaCelle[listaCelle.Count - 1].Add(col - i);
                     }
                     checkDiagonale[1] = false;
                 }
@@ -89,6 +101,12 @@ public class Alfiere : Figura
                         listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(row + i);
                         listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(col - i);
                     }
+                    else if (movimento && Partita.MatriceScacchiera[row + i, col - i].Colore == colore)
+                    {
+                        listaCelle.Add(new List<int>());
+                        listaCelle[listaCelle.Count - 1].Add(row + i);
+                        listaCelle[listaCelle.Count - 1].Add(col - i);
+                    }
                     checkDiagonale[2] = false;
                 }
             }
@@ -109,6 +127,12 @@ public class Alfiere : Figura
                         listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(row - i);
                         listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(col + i);
                     }
+                    else if (movimento && Partita.MatriceScacchiera[row - i, col + i].Colore == colore)
+                    {
+                        listaCelle.Add(new List<int>());
+                        listaCelle[listaCelle.Count - 1].Add(row - i);
+                        listaCelle[listaCelle.Count - 1].Add(col + i);
+                    }
                     checkDiagonale[3] = false;
                 }
             }
@@ -119,10 +143,5 @@ public class Alfiere : Figura
         listaOutput.Add(listaCelleMangiabili);
 
         return listaOutput;
-    }
-
-    public override bool checkProtetto()
-    {
-        throw new NotImplementedException();
     }
 }

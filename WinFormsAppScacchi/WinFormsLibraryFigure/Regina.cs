@@ -50,6 +50,12 @@ public class Regina : Figura
                         listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(row + i);
                         listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(col);
                     }
+                    else if (movimento && Partita.MatriceScacchiera[row + i, col].Colore == colore)
+                    {
+                        listaCelle.Add(new List<int>());
+                        listaCelle[listaCelle.Count - 1].Add(row + i);
+                        listaCelle[listaCelle.Count - 1].Add(col);
+                    }
                     check[0] = false;
                 }
             }
@@ -69,6 +75,12 @@ public class Regina : Figura
                         listaCelleMangiabili.Add(new List<int>());
                         listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(row - i);
                         listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(col);
+                    }
+                    else if (movimento && Partita.MatriceScacchiera[row - i, col].Colore == colore)
+                    {
+                        listaCelle.Add(new List<int>());
+                        listaCelle[listaCelle.Count - 1].Add(row - i);
+                        listaCelle[listaCelle.Count - 1].Add(col);
                     }
                     check[1] = false;
                 }
@@ -90,6 +102,12 @@ public class Regina : Figura
                         listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(row);
                         listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(col + i);
                     }
+                    else if (movimento && Partita.MatriceScacchiera[row, col + i].Colore == colore)
+                    {
+                        listaCelle.Add(new List<int>());
+                        listaCelle[listaCelle.Count - 1].Add(row);
+                        listaCelle[listaCelle.Count - 1].Add(col + i);
+                    }
                     check[2] = false;
                 }
             }
@@ -109,6 +127,12 @@ public class Regina : Figura
                         listaCelleMangiabili.Add(new List<int>());
                         listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(row);
                         listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(col - i);
+                    }
+                    else if (movimento && Partita.MatriceScacchiera[row, col - i].Colore == colore)
+                    {
+                        listaCelle.Add(new List<int>());
+                        listaCelle[listaCelle.Count - 1].Add(row);
+                        listaCelle[listaCelle.Count - 1].Add(col - i);
                     }
                     check[3] = false;
                 }
@@ -131,6 +155,12 @@ public class Regina : Figura
                         listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(row + i);
                         listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(col + i);
                     }
+                    else if (movimento && Partita.MatriceScacchiera[row + i, col + i].Colore == colore)
+                    {
+                        listaCelle.Add(new List<int>());
+                        listaCelle[listaCelle.Count - 1].Add(row + i);
+                        listaCelle[listaCelle.Count - 1].Add(col + i);
+                    }
                     check[4] = false;
                 }
             }
@@ -150,6 +180,12 @@ public class Regina : Figura
                         listaCelleMangiabili.Add(new List<int>());
                         listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(row - i);
                         listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(col - i);
+                    }
+                    else if (movimento && Partita.MatriceScacchiera[row - i, col - i].Colore == colore)
+                    {
+                        listaCelle.Add(new List<int>());
+                        listaCelle[listaCelle.Count - 1].Add(row - i);
+                        listaCelle[listaCelle.Count - 1].Add(col - i);
                     }
                     check[5] = false;
                 }
@@ -171,6 +207,12 @@ public class Regina : Figura
                         listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(row + i);
                         listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(col - i);
                     }
+                    else if (movimento && Partita.MatriceScacchiera[row + i, col - i].Colore == colore)
+                    {
+                        listaCelle.Add(new List<int>());
+                        listaCelle[listaCelle.Count - 1].Add(row + i);
+                        listaCelle[listaCelle.Count - 1].Add(col - i);
+                    }
                     check[6] = false;
                 }
             }
@@ -191,6 +233,12 @@ public class Regina : Figura
                         listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(row - i);
                         listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(col + i);
                     }
+                    else if (movimento && Partita.MatriceScacchiera[row - i, col + i].Colore == colore)
+                    {
+                        listaCelle.Add(new List<int>());
+                        listaCelle[listaCelle.Count - 1].Add(row - i);
+                        listaCelle[listaCelle.Count - 1].Add(col + i);
+                    }
                     check[7] = false;
                 }
             }
@@ -201,10 +249,5 @@ public class Regina : Figura
         listaOutput.Add(listaCelleMangiabili);
 
         return listaOutput;
-    }
-
-    public override bool checkProtetto()
-    {
-        throw new NotImplementedException();
     }
 }

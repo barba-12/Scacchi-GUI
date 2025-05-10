@@ -41,13 +41,13 @@ public class Cavallo : Figura
         foreach (List<int> l in cordinateMovimento)
         {
             if ((row + l[0] <= 7 && row + l[0] >= 0) && (col + l[1] <= 7 && col + l[1] >= 0)) {
-                if (movimento)
+                if (movimento && Partita.MatriceScacchiera[row + l[0], col + l[1]] != null && Partita.MatriceScacchiera[row + l[0], col + l[1]].Colore == colore)
                 {
                     listaCelle.Add(new List<int>());
                     listaCelle[listaCelle.Count - 1].Add(row + l[0]);
                     listaCelle[listaCelle.Count - 1].Add(col + l[1]);
                 }
-                else {
+                else if(!movimento){
                     if (Partita.MatriceScacchiera[row + l[0], col + l[1]] == null)
                     {
                         listaCelle.Add(new List<int>());
@@ -69,10 +69,5 @@ public class Cavallo : Figura
         listaOutput.Add(listaCelleMangiabili);
 
         return listaOutput;
-    }
-
-    public override bool checkProtetto()
-    {
-        throw new NotImplementedException();
     }
 }

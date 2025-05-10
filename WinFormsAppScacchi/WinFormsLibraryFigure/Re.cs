@@ -43,17 +43,25 @@ public class Re : Figura
         foreach (List<int> l in cordinateMovimento)
         {
             if ((row + l[0] <= 7 && row + l[0] >= 0) && (col + l[1] <= 7 && col + l[1] >= 0)) {
-                if (Partita.MatriceScacchiera[row + l[0], col + l[1]] == null)
+                if (movimento && Partita.MatriceScacchiera[row + l[0], col + l[1]] != null && Partita.MatriceScacchiera[row + l[0], col + l[1]].Colore == colore)
                 {
                     listaCelle.Add(new List<int>());
                     listaCelle[listaCelle.Count - 1].Add(row + l[0]);
                     listaCelle[listaCelle.Count - 1].Add(col + l[1]);
                 }
-                else if (Partita.MatriceScacchiera[row + l[0], col + l[1]].Colore != colore) // && Partita.MatriceScacchiera[row + l[0], col + l[1]].Colore.checkProtetto() != true
-                {
-                    listaCelleMangiabili.Add(new List<int>());
-                    listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(row + l[0]);
-                    listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(col + l[1]);
+                else if (!movimento) {
+                    if (Partita.MatriceScacchiera[row + l[0], col + l[1]] == null)
+                    {
+                        listaCelle.Add(new List<int>());
+                        listaCelle[listaCelle.Count - 1].Add(row + l[0]);
+                        listaCelle[listaCelle.Count - 1].Add(col + l[1]);
+                    }
+                    else if (Partita.MatriceScacchiera[row + l[0], col + l[1]].Colore != colore) // && Partita.MatriceScacchiera[row + l[0], col + l[1]].Colore.checkProtetto() != true
+                    {
+                        listaCelleMangiabili.Add(new List<int>());
+                        listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(row + l[0]);
+                        listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(col + l[1]);
+                    }
                 }
             }
         }
@@ -70,10 +78,5 @@ public class Re : Figura
         listaOutput.Add(listaCelleMangiabili);
 
         return listaOutput;
-    }
-
-    public override bool checkProtetto()
-    {
-        throw new NotImplementedException();
     }
 }

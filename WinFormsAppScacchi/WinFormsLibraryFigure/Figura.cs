@@ -21,6 +21,28 @@ namespace WinFormsLibraryFigure
         //ritorna le cordinate della caselle in cui la figura si puo spostare (dove verranno inseriti i suggerimenti di movimento)
         public abstract List<List<List<int>>> checkMovimeto(int row, int col, bool movimento);
         public abstract int getPunteggio();
-        public abstract bool checkProtetto();
+        public bool checkProtetto() {
+            List<List<int>> cordinate = new List<List<int>>();
+
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    Figura f = Partita.MatriceScacchiera[i, j];
+
+                    if (f != null)
+                    {
+                        cordinate = f.checkMovimeto(i, j, true)[0]; //la funzione non ritona le cordinate perche non si puo muovere sopra uan figura dello stesso colore
+                                                                    //passggio di bool per differenziare quando mi servono tutti i movimenti o solo quelli possibili
+                        foreach (List<int> l in cordinate)
+                        {
+                            if (Partita.MatriceScacchiera[l[0], l[1]] == this) return true;
+                        }
+                    }
+                }
+            }
+
+            return false;
+        }
     }
 }
