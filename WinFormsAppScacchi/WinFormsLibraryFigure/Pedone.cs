@@ -12,9 +12,11 @@ public class Pedone : Figura
 {
     private bool colore;
     private bool firstMove = true;
+    private bool protetto;
 
     public Pedone(bool colore) : base(colore) {
         this.colore = colore;
+        protetto = checkProtetto();
     }
 
     public override string GetSimbolo()
@@ -32,7 +34,9 @@ public class Pedone : Figura
         firstMove = false;
     }
 
-    public override List<List<List<int>>> checkMovimeto(int row, int col)
+    public bool Protetto { get => protetto; set => protetto = value; }
+
+    public override List<List<List<int>>> checkMovimeto(int row, int col, bool movimento)
     {
         List<List<int>> listaCelle = new List<List<int>>();
         List<List<int>> listaCelleMangiabili = new List<List<int>>();
@@ -107,6 +111,33 @@ public class Pedone : Figura
         listaOutput.Add(listaCelleMangiabili);
 
         return listaOutput;
+    }
+
+    //richaimo nel costruttore o quando si muove una figura del colore uguale
+    public override bool checkProtetto() {
+        List<List<int>> cordinate = new List<List<int>>();
+
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++)
+            {
+                Figura f = Partita.MatriceScacchiera[i, j];
+
+                if (f != null) {
+                    cordinate = f.checkMovimeto(i, j, true)[0]; //la funzione non ritona le cordinate perche non si puo muovere sopra uan figura dello stesso colore
+                    //passggio di bool per differenziare quando mi servono tutti i movimenti o solo quelli possibili
+
+                    foreach (List<int> l in cordinate)
+                    {
+                        if (Partita.MatriceScacchiera[l[0], l[1]] == this) return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+
+        //richiamo checkMovimento per tutto le figure ello stesso colore e confornto le conrdinate uscite con quelle di questa figura
+        //se = return true && return false;
     }
 
     //metodo check scacco che utlizza checkMovimento per conforntare le figure in linea per essere mangiate per contriollare se ci sia il re del colore opposto

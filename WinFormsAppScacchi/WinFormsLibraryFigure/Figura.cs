@@ -19,7 +19,8 @@ namespace WinFormsLibraryFigure
 
         public abstract string GetSimbolo();
         //ritorna le cordinate della caselle in cui la figura si puo spostare (dove verranno inseriti i suggerimenti di movimento)
-        public abstract List<List<List<int>>> checkMovimeto(int row, int col);
+        public abstract List<List<List<int>>> checkMovimeto(int row, int col, bool movimento);
         public abstract int getPunteggio();
+        public abstract bool checkProtetto();
     }
 }

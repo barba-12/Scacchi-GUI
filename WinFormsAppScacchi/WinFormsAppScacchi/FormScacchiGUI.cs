@@ -102,6 +102,8 @@ public partial class FormScacchiGUI : Form
 
         void CellaLabel_Click(object sender, EventArgs e)
         {
+
+
             Label clickedLabel = sender as Label;
             List<int> cordinate = trovaLabel(clickedLabel);
             //Console.WriteLine($"x: {cordinate[0]} - y: {cordinate[1]}");
@@ -143,9 +145,12 @@ public partial class FormScacchiGUI : Form
                 clearScacchiera();
                 //controllare cordinate della label cliccata
                 figura = clickedLabel.Tag as Figura;
+
+                Console.WriteLine($"pedone portetto? : {figura.checkProtetto()}");
+
                 if (Partita.Turno == figura.Colore)
                 {
-                    lista = figura.checkMovimeto(cordinate[0], cordinate[1]);
+                    lista = figura.checkMovimeto(cordinate[0], cordinate[1], false);
                     cordinateFigura = new List<int>() { cordinate[0], cordinate[1] };
 
                     foreach (List<int> l in lista[0])

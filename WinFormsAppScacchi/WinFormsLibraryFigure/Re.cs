@@ -35,7 +35,7 @@ public class Re : Figura
         return 0;
     }
 
-    public override List<List<List<int>>> checkMovimeto(int row, int col)
+    public override List<List<List<int>>> checkMovimeto(int row, int col, bool movimento)
     {
         List<List<int>> listaCelle = new List<List<int>>();
         List<List<int>> listaCelleMangiabili = new List<List<int>>();
@@ -49,7 +49,7 @@ public class Re : Figura
                     listaCelle[listaCelle.Count - 1].Add(row + l[0]);
                     listaCelle[listaCelle.Count - 1].Add(col + l[1]);
                 }
-                else if (Partita.MatriceScacchiera[row + l[0], col + l[1]].Colore != colore)
+                else if (Partita.MatriceScacchiera[row + l[0], col + l[1]].Colore != colore) // && Partita.MatriceScacchiera[row + l[0], col + l[1]].Colore.checkProtetto() != true
                 {
                     listaCelleMangiabili.Add(new List<int>());
                     listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(row + l[0]);
@@ -70,5 +70,10 @@ public class Re : Figura
         listaOutput.Add(listaCelleMangiabili);
 
         return listaOutput;
+    }
+
+    public override bool checkProtetto()
+    {
+        throw new NotImplementedException();
     }
 }

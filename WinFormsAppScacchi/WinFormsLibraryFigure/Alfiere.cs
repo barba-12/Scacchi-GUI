@@ -23,7 +23,7 @@ public class Alfiere : Figura
         return 3;
     }
 
-    public override List<List<List<int>>> checkMovimeto(int row, int col)
+    public override List<List<List<int>>> checkMovimeto(int row, int col, bool movimento)
     {
         List<List<int>> listaCelle = new List<List<int>>();
         List<List<int>> listaCelleMangiabili = new List<List<int>>();
@@ -119,5 +119,10 @@ public class Alfiere : Figura
         listaOutput.Add(listaCelleMangiabili);
 
         return listaOutput;
+    }
+
+    public override bool checkProtetto()
+    {
+        throw new NotImplementedException();
     }
 }

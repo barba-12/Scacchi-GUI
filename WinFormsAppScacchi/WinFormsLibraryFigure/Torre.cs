@@ -23,7 +23,7 @@ public class Torre : Figura
         return 5;
     }
 
-    public override List<List<List<int>>> checkMovimeto(int row, int col)
+    public override List<List<List<int>>> checkMovimeto(int row, int col, bool movimento)
     {
         List<List<int>> listaCelle = new List<List<int>>();
         List<List<int>> listaCelleMangiabili = new List<List<int>>();
@@ -115,5 +115,10 @@ public class Torre : Figura
         listaOutput.Add(listaCelleMangiabili);
 
         return listaOutput;
+    }
+
+    public override bool checkProtetto()
+    {
+        throw new NotImplementedException();
     }
 }

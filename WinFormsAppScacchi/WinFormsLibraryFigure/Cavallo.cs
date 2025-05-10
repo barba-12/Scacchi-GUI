@@ -33,7 +33,7 @@ public class Cavallo : Figura
     {
         return 3;
     }
-    public override List<List<List<int>>> checkMovimeto(int row, int col)
+    public override List<List<List<int>>> checkMovimeto(int row, int col, bool movimento)
     {
         List<List<int>> listaCelle = new List<List<int>>();
         List<List<int>> listaCelleMangiabili = new List<List<int>>();
@@ -41,18 +41,26 @@ public class Cavallo : Figura
         foreach (List<int> l in cordinateMovimento)
         {
             if ((row + l[0] <= 7 && row + l[0] >= 0) && (col + l[1] <= 7 && col + l[1] >= 0)) {
-                if (Partita.MatriceScacchiera[row + l[0], col + l[1]] == null)
+                if (movimento)
                 {
                     listaCelle.Add(new List<int>());
                     listaCelle[listaCelle.Count - 1].Add(row + l[0]);
                     listaCelle[listaCelle.Count - 1].Add(col + l[1]);
                 }
-                else if (Partita.MatriceScacchiera[row + l[0], col + l[1]].Colore != colore)
-                {
-                    listaCelleMangiabili.Add(new List<int>());
-                    listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(row + l[0]);
-                    listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(col + l[1]);
-                }
+                else {
+                    if (Partita.MatriceScacchiera[row + l[0], col + l[1]] == null)
+                    {
+                        listaCelle.Add(new List<int>());
+                        listaCelle[listaCelle.Count - 1].Add(row + l[0]);
+                        listaCelle[listaCelle.Count - 1].Add(col + l[1]);
+                    }
+                    else if (Partita.MatriceScacchiera[row + l[0], col + l[1]].Colore != colore)
+                    {
+                        listaCelleMangiabili.Add(new List<int>());
+                        listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(row + l[0]);
+                        listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(col + l[1]);
+                    }
+                } 
             }
         }
 
@@ -61,5 +69,10 @@ public class Cavallo : Figura
         listaOutput.Add(listaCelleMangiabili);
 
         return listaOutput;
+    }
+
+    public override bool checkProtetto()
+    {
+        throw new NotImplementedException();
     }
 }
