@@ -52,11 +52,13 @@ public class Re : Figura
                 else if (!movimento) {
                     if (Partita.MatriceScacchiera[row + l[0], col + l[1]] == null)
                     {
-                        listaCelle.Add(new List<int>());
-                        listaCelle[listaCelle.Count - 1].Add(row + l[0]);
-                        listaCelle[listaCelle.Count - 1].Add(col + l[1]);
+                        if(checkMovLibero(row + l[0], col + l[1])){
+                            listaCelle.Add(new List<int>());
+                            listaCelle[listaCelle.Count - 1].Add(row + l[0]);
+                            listaCelle[listaCelle.Count - 1].Add(col + l[1]);
+                        }
                     }
-                    else if (Partita.MatriceScacchiera[row + l[0], col + l[1]].Colore != colore) // && Partita.MatriceScacchiera[row + l[0], col + l[1]].Colore.checkProtetto() != true
+                    else if (Partita.MatriceScacchiera[row + l[0], col + l[1]].Colore != colore && !Partita.MatriceScacchiera[row + l[0], col + l[1]].checkProtetto()) // && Partita.MatriceScacchiera[row + l[0], col + l[1]].Colore.checkProtetto() != true
                     {
                         listaCelleMangiabili.Add(new List<int>());
                         listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(row + l[0]);
@@ -78,5 +80,25 @@ public class Re : Figura
         listaOutput.Add(listaCelleMangiabili);
 
         return listaOutput;
+    }
+
+    private bool checkMovLibero(int x, int y) {
+        //controllare se delle figure di colore opposto si possono muovore in questa casella nel caso limiare il movimento
+        for (int i = 0; i < Partita.MatriceScacchiera.GetLength(0) - 1; i++)
+        {
+            for (int j = 0; j < Partita.MatriceScacchiera.GetLength(0) - 1; j++)
+            {
+                //controllo che non sia un re altrimenti va in stackOverflow richimandosi all'infinito
+                if (Partita.MatriceScacchiera[i, j] != null && Partita.MatriceScacchiera[i, j].Colore != colore && !(Partita.MatriceScacchiera[i, j] is Re))
+                {
+                    List<List<int>> lista = Partita.MatriceScacchiera[i, j].checkMovimeto(i, j, false)[0];
+                    foreach (List<int> li in lista)
+                    {
+                        if (li[0] == x && li[1] == y) return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 }

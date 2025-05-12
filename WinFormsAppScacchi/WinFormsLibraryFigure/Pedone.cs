@@ -76,7 +76,6 @@ public class Pedone : Figura
                     listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(row + 1);
                     listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(col + 1);
                 }
-
             }
             if ((row + 1 <= 7 && col - 1 >= 0) && Partita.MatriceScacchiera[row + 1, col - 1] != null && Partita.MatriceScacchiera[row + 1, col - 1].Colore != colore)
             {
@@ -139,7 +138,7 @@ public class Pedone : Figura
                     listaCelle[listaCelle.Count - 1].Add(row - 1);
                     listaCelle[listaCelle.Count - 1].Add(col + 1);
                 }
-                else if (!movimento && Partita.MatriceScacchiera[row + 1, col - 1].Colore != colore)
+                else if (!movimento && Partita.MatriceScacchiera[row - 1, col + 1].Colore != colore)
                 {
                     listaCelleMangiabili.Add(new List<int>());
                     listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(row - 1);
