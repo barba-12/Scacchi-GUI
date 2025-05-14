@@ -146,24 +146,26 @@ public partial class FormScacchiGUI : Form
                 //controllare cordinate della label cliccata
                 figura = clickedLabel.Tag as Figura;
 
-                Console.WriteLine($"pedone portetto? : {figura.checkProtetto()}");
+                Console.WriteLine($"pedone portetto : {figura.checkProtetto()}");
 
                 if (Partita.Turno == figura.Colore)
                 {
-                    lista = figura.checkMovimeto(cordinate[0], cordinate[1], false);
+                    List<List<int>> lMov = figura.checkSposta(cordinate[0], cordinate[1]);
+                    List<List<int>> lMan = figura.checkMangia(cordinate[0], cordinate[1]);
                     cordinateFigura = new List<int>() { cordinate[0], cordinate[1] };
 
-                    foreach (List<int> l in lista[0])
+                    foreach (List<int> l in lMov)
                     {
                         Cella cellaVecchia = Partita.MatriceCelle[l[0], l[1]];
                         cellaVecchia.Label.Text = "o";
                     }
 
-                    foreach (List<int> l in lista[1])
+                    foreach (List<int> l in lMan)
                     {
                         Cella cellaVecchia = Partita.MatriceCelle[l[0], l[1]];
                         cellaVecchia.Label.Text = "m"; //TODO: trovare simbolo UTF-8 per indicare la possibilita di mangiare la figura
                     }
+
                 }
             }
         }

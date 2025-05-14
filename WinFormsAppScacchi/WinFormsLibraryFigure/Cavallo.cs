@@ -33,41 +33,62 @@ public class Cavallo : Figura
     {
         return 3;
     }
-    public override List<List<List<int>>> checkMovimeto(int row, int col, bool movimento)
+
+    //funzione mosse possibili dentro la scacchiera
+
+    //funzione per capire quali di quelle cordinate puo mangiare
+
+    //funzione per capire in quali si puo muovere
+
+    public override List<List<int>> checkMangia(int row, int col)
     {
         List<List<int>> listaCelle = new List<List<int>>();
-        List<List<int>> listaCelleMangiabili = new List<List<int>>();
 
-        foreach (List<int> l in cordinateMovimento)
+        foreach (List<int> l in checkMosse(row, col))
         {
-            if ((row + l[0] <= 7 && row + l[0] >= 0) && (col + l[1] <= 7 && col + l[1] >= 0)) {
-                if (movimento && Partita.MatriceScacchiera[row + l[0], col + l[1]] != null && Partita.MatriceScacchiera[row + l[0], col + l[1]].Colore == colore)
-                {
-                    listaCelle.Add(new List<int>());
-                    listaCelle[listaCelle.Count - 1].Add(row + l[0]);
-                    listaCelle[listaCelle.Count - 1].Add(col + l[1]);
-                }
-                else if(!movimento){
-                    if (Partita.MatriceScacchiera[row + l[0], col + l[1]] == null)
-                    {
-                        listaCelle.Add(new List<int>());
-                        listaCelle[listaCelle.Count - 1].Add(row + l[0]);
-                        listaCelle[listaCelle.Count - 1].Add(col + l[1]);
-                    }
-                    else if (Partita.MatriceScacchiera[row + l[0], col + l[1]].Colore != colore)
-                    {
-                        listaCelleMangiabili.Add(new List<int>());
-                        listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(row + l[0]);
-                        listaCelleMangiabili[listaCelleMangiabili.Count - 1].Add(col + l[1]);
-                    }
-                } 
+            if (Partita.MatriceScacchiera[l[0], l[1]] != null && Partita.MatriceScacchiera[l[0], l[1]].Colore != colore)
+            {
+                listaCelle.Add(new List<int>());
+                listaCelle[listaCelle.Count-1].Add(l[0]);
+                listaCelle[listaCelle.Count-1].Add(l[1]);
             }
         }
 
-        List<List<List<int>>> listaOutput = new List<List<List<int>>>();
-        listaOutput.Add(listaCelle);
-        listaOutput.Add(listaCelleMangiabili);
-
-        return listaOutput;
+        return listaCelle;
     }
+
+    public override List<List<int>> checkMosse(int row, int col)
+    {
+        List<List<int>> listaCelle = new List<List<int>>();
+
+        foreach (List<int> l in cordinateMovimento)
+        {
+            if ((row + l[0] <= 7 && row + l[0] >= 0) && (col + l[1] <= 7 && col + l[1] >= 0))
+            {
+                listaCelle.Add(new List<int>());
+                listaCelle[listaCelle.Count - 1].Add(row + l[0]);
+                listaCelle[listaCelle.Count - 1].Add(col + l[1]);
+            }
+        }
+
+        return listaCelle;
+    }
+    public override List<List<int>> checkSposta(int row, int col)
+    {
+        List<List<int>> listaCelle = new List<List<int>>();
+
+        foreach (List<int> l in checkMosse(row, col))
+        {
+            if (Partita.MatriceScacchiera[l[0], l[1]] == null) {
+                listaCelle.Add(new List<int>());
+                listaCelle[listaCelle.Count-1].Add(l[0]);
+                listaCelle[listaCelle.Count-1].Add(l[1]);
+            }
+        }
+
+        return listaCelle;
+    }
+
+
+    //da togliere questa funzione
 }
