@@ -24,6 +24,8 @@ public class Alfiere : Figura
     }
     public override List<List<int>> checkMangia(int row, int col)
     {
+        //trovare quando la diagonale si interrompe perchè trovata una figura
+        //sia per afiere che per torre e succ. regina
         List<List<int>> listaCelle = new List<List<int>>();
 
         foreach (List<int> l in checkDiagonali(row, col))

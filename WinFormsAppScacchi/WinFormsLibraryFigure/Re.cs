@@ -105,7 +105,6 @@ public class Re : Figura
                 listaCelle[listaCelle.Count - 1].Add(l[1]);
             }
         }
-
         return listaCelle;
     }
 
