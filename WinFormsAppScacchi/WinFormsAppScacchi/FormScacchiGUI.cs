@@ -102,8 +102,6 @@ public partial class FormScacchiGUI : Form
 
         void CellaLabel_Click(object sender, EventArgs e)
         {
-
-
             Label clickedLabel = sender as Label;
             List<int> cordinate = trovaLabel(clickedLabel);
             //Console.WriteLine($"x: {cordinate[0]} - y: {cordinate[1]}");
@@ -111,6 +109,9 @@ public partial class FormScacchiGUI : Form
             //Console.WriteLine(clickedLabel.Text);
             if (clickedLabel.Text == "o" || clickedLabel.Text == "m")
             {
+                int vittoria = checkVittoria();
+                if (vittoria == 1) Console.WriteLine("vittoria bianco");
+                else if (vittoria == 2) Console.WriteLine("vittoria nero");
                 //controllo che sia un pedono e cambio la prima mossa su false
                 if (figura.GetSimbolo() == "♙" || figura.GetSimbolo() == "♟")
                 {
@@ -118,7 +119,7 @@ public partial class FormScacchiGUI : Form
                     p.ChangeFirstMove();
                 }
 
-                //controllo se mangia una figura aggiurno il punteggio
+                //controllo se mangia una figura aggiorno il punteggio
                 if (clickedLabel.Text == "m")
                 {
                     Figura figuraMangiata = Partita.MatriceScacchiera[cordinate[0], cordinate[1]];
@@ -146,12 +147,12 @@ public partial class FormScacchiGUI : Form
                 //controllare cordinate della label cliccata
                 figura = clickedLabel.Tag as Figura;
 
-                Console.WriteLine($"pedone portetto : {figura.checkProtetto()}");
+                Console.WriteLine($"pedone protetto : {figura.checkProtetto()}");
 
                 if (Partita.Turno == figura.Colore)
                 {
                     List<List<int>> lMov = figura.checkSposta(cordinate[0], cordinate[1]);
-                    List<List<int>> lMan = figura.checkMangia(cordinate[0], cordinate[1]);
+                    List<List<int>> lMan = figura.checkMangia(cordinate[0], cordinate[1], true);
                     cordinateFigura = new List<int>() { cordinate[0], cordinate[1] };
 
                     foreach (List<int> l in lMov)
@@ -165,7 +166,6 @@ public partial class FormScacchiGUI : Form
                         Cella cellaVecchia = Partita.MatriceCelle[l[0], l[1]];
                         cellaVecchia.Label.Text = "m"; //TODO: trovare simbolo UTF-8 per indicare la possibilita di mangiare la figura
                     }
-
                 }
             }
         }
@@ -186,6 +186,44 @@ public partial class FormScacchiGUI : Form
                 if(c.Label.Text == "m") c.Label.Text = Partita.MatriceScacchiera[trovaLabel(c.Label)[0], trovaLabel(c.Label)[1]].GetSimbolo();
                 if(c.Label.Text == "o") c.Label.Text = "";
             }
+        }
+
+        List<int> trovaRe(bool colore) {
+            List<int> cordinate = new List<int>();
+
+            for (int i = 0; i < Partita.MatriceScacchiera.GetLength(0); i++) {
+                for (int j = 0; j < Partita.MatriceScacchiera.GetLength(0); j++) {
+                    if (Partita.MatriceScacchiera[i, j] != null && Partita.MatriceScacchiera[i, j] is Re && Partita.MatriceScacchiera[i, j].Colore == colore) {
+                        cordinate.Add(i);
+                        cordinate.Add(j);
+                    }
+                }
+            }
+
+            return cordinate;
+        }
+
+        int checkVittoria() {
+            // 1 vittoria bianco / 2 vittoria nero / 0 patta / -1 niente
+            List<int> reBianco = trovaRe(true);
+            List<int> reNero = trovaRe(false);
+
+
+            Console.WriteLine(Partita.MatriceScacchiera[reBianco[0], reBianco[1]].checkSposta(reBianco[0], reBianco[1]).Count);
+            Console.WriteLine(Partita.MatriceScacchiera[reNero[0], reNero[1]].checkSposta(reNero[0], reNero[1]).Count);
+
+            //controllo che il re non puo muoversi
+            if (Partita.MatriceScacchiera[reBianco[0], reBianco[1]].checkSposta(reBianco[0], reBianco[1]).Count == 0) {
+                //verifico che il re sia sotto scacco
+                //cotnrollo che le figre che mettono sotto scacco il re non possono essere mangiate && controllo che le figure siano protette (da sistemare logica)
+                return 1;
+            }
+
+            if (Partita.MatriceScacchiera[reNero[0], reNero[1]].checkSposta(reNero[0], reNero[1]).Count == 0) {
+                return 2;
+            }
+
+            return -1;
         }
 
         // Dimensione totale del form

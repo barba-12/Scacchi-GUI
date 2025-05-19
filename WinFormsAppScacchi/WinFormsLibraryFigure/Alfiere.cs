@@ -22,23 +22,37 @@ public class Alfiere : Figura
     {
         return 3;
     }
-    public override List<List<int>> checkMangia(int row, int col)
+    public override List<List<int>> checkMangia(int row, int col, bool mod)
     {
         //trovare quando la diagonale si interrompe perchè trovata una figura
         //sia per afiere che per torre e succ. regina
         List<List<int>> listaCelle = new List<List<int>>();
 
-        foreach (List<int> l in checkDiagonali(row, col))
+        if (mod)
         {
-            if (Partita.MatriceScacchiera[l[0], l[1]] != null && Partita.MatriceScacchiera[l[0], l[1]].Colore != colore)
+            foreach (List<int> l in checkDiagonali(row, col))
             {
-                listaCelle.Add(new List<int>());
-                listaCelle[listaCelle.Count - 1].Add(l[0]);
-                listaCelle[listaCelle.Count - 1].Add(l[1]);
+                if (Partita.MatriceScacchiera[l[0], l[1]] != null && Partita.MatriceScacchiera[l[0], l[1]].Colore != colore)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(l[0]);
+                    listaCelle[listaCelle.Count - 1].Add(l[1]);
+                }
+            }
+        }
+        else {
+            foreach (List<int> l in checkDiagonali(row, col))
+            {
+                if (Partita.MatriceScacchiera[l[0], l[1]] != null && Partita.MatriceScacchiera[l[0], l[1]].Colore == colore)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(l[0]);
+                    listaCelle[listaCelle.Count - 1].Add(l[1]);
+                }
             }
         }
 
-        return listaCelle;
+            return listaCelle;
     }
 
     public override List<List<int>> checkMosse(int row, int col)

@@ -45,17 +45,31 @@ public class Cavallo : Figura
 
     //funzione per capire in quali si puo muovere
 
-    public override List<List<int>> checkMangia(int row, int col)
+    public override List<List<int>> checkMangia(int row, int col, bool mod)
     {
         List<List<int>> listaCelle = new List<List<int>>();
 
-        foreach (List<int> l in checkMosse(row, col))
-        {
-            if (Partita.MatriceScacchiera[l[0], l[1]] != null && Partita.MatriceScacchiera[l[0], l[1]].Colore != colore)
+        if (mod) {
+            foreach (List<int> l in checkMosse(row, col))
             {
-                listaCelle.Add(new List<int>());
-                listaCelle[listaCelle.Count-1].Add(l[0]);
-                listaCelle[listaCelle.Count-1].Add(l[1]);
+                if (Partita.MatriceScacchiera[l[0], l[1]] != null && Partita.MatriceScacchiera[l[0], l[1]].Colore != colore)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(l[0]);
+                    listaCelle[listaCelle.Count - 1].Add(l[1]);
+                }
+            }
+        }
+        else
+        {
+            foreach (List<int> l in checkMosse(row, col))
+            {
+                if (Partita.MatriceScacchiera[l[0], l[1]] != null && Partita.MatriceScacchiera[l[0], l[1]].Colore == colore)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(l[0]);
+                    listaCelle[listaCelle.Count - 1].Add(l[1]);
+                }
             }
         }
 

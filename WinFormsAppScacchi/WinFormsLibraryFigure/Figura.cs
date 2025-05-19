@@ -20,7 +20,7 @@ namespace WinFormsLibraryFigure
         public abstract string GetSimbolo();
         //ritorna le cordinate della caselle in cui la figura si puo spostare (dove verranno inseriti i suggerimenti di movimento)
         public abstract List<List<int>> checkMosse(int row, int col);
-        public abstract List<List<int>> checkMangia(int row, int col);
+        public abstract List<List<int>> checkMangia(int row, int col, bool mod);
         public abstract List<List<int>> checkSposta(int row, int col);
         public abstract List<List<int>> checkScacco(int row, int col);
         public abstract int getPunteggio();
@@ -35,7 +35,7 @@ namespace WinFormsLibraryFigure
 
                     if (f != null)
                     {
-                        cordinate = f.checkMangia(i, j); //la funzione non ritona le cordinate perche non si puo muovere sopra uan figura dello stesso colore
+                        cordinate = f.checkMangia(i, j, false); //la funzione non ritona le cordinate perche non si puo muovere sopra uan figura dello stesso colore
                                                                     //passggio di bool per differenziare quando mi servono tutti i movimenti o solo quelli possibili
                         foreach (List<int> l in cordinate)
                         {

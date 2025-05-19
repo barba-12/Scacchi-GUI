@@ -74,7 +74,7 @@ public class Pedone : Figura
     }
 
     public bool Protetto { get => protetto; set => protetto = value; }
-    public override List<List<int>> checkMangia(int row, int col)
+    public override List<List<int>> checkMangia(int row, int col, bool mod)
     {
         List<List<int>> listaCelle = new List<List<int>>();
 
@@ -82,37 +82,73 @@ public class Pedone : Figura
         //nero +1 +1 / +1 -1
         //bianco -1 -1 / -1 +1
 
-        if (colore)
-        {
-            if (row-1 >= 0 && col-1 >= 0 && Partita.MatriceScacchiera[row - 1, col - 1] != null && Partita.MatriceScacchiera[row - 1, col - 1].Colore != colore)
+        if (mod) {
+            if (colore)
             {
-                listaCelle.Add(new List<int>());
-                listaCelle[listaCelle.Count - 1].Add(row - 1);
-                listaCelle[listaCelle.Count - 1].Add(col - 1);
+                if (row - 1 >= 0 && col - 1 >= 0 && Partita.MatriceScacchiera[row - 1, col - 1] != null && Partita.MatriceScacchiera[row - 1, col - 1].Colore != colore)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row - 1);
+                    listaCelle[listaCelle.Count - 1].Add(col - 1);
+                }
+                if (row - 1 >= 0 && col + 1 <= 7 && Partita.MatriceScacchiera[row - 1, col + 1] != null && Partita.MatriceScacchiera[row - 1, col + 1].Colore != colore)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row - 1);
+                    listaCelle[listaCelle.Count - 1].Add(col + 1);
+                }
             }
-            if (row - 1 >= 0 && col + 1 <= 7 && Partita.MatriceScacchiera[row - 1, col + 1] != null && Partita.MatriceScacchiera[row - 1, col + 1].Colore != colore)
+            else
             {
-                listaCelle.Add(new List<int>());
-                listaCelle[listaCelle.Count - 1].Add(row - 1);
-                listaCelle[listaCelle.Count - 1].Add(col + 1);
+                if (row + 1 <= 7 && col + 1 <= 7 && Partita.MatriceScacchiera[row + 1, col + 1] != null && Partita.MatriceScacchiera[row + 1, col + 1].Colore != colore)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row + 1);
+                    listaCelle[listaCelle.Count - 1].Add(col + 1);
+                }
+                if (row + 1 <= 7 && col - 1 >= 0 && Partita.MatriceScacchiera[row + 1, col - 1] != null && Partita.MatriceScacchiera[row + 1, col - 1].Colore != colore)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row + 1);
+                    listaCelle[listaCelle.Count - 1].Add(col - 1);
+                }
             }
         }
-        else {
-            if (row + 1 <= 7 && col + 1 <= 7 && Partita.MatriceScacchiera[row + 1, col + 1] != null && Partita.MatriceScacchiera[row + 1, col + 1].Colore != colore)
+        else
+        {
+            if (colore)
             {
-                listaCelle.Add(new List<int>());
-                listaCelle[listaCelle.Count - 1].Add(row + 1);
-                listaCelle[listaCelle.Count - 1].Add(col + 1);
+                if (row - 1 >= 0 && col - 1 >= 0 && Partita.MatriceScacchiera[row - 1, col - 1] != null && Partita.MatriceScacchiera[row - 1, col - 1].Colore == colore)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row - 1);
+                    listaCelle[listaCelle.Count - 1].Add(col - 1);
+                }
+                if (row - 1 >= 0 && col + 1 <= 7 && Partita.MatriceScacchiera[row - 1, col + 1] != null && Partita.MatriceScacchiera[row - 1, col + 1].Colore == colore)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row - 1);
+                    listaCelle[listaCelle.Count - 1].Add(col + 1);
+                }
             }
-            if (row + 1 <= 7 && col - 1 >= 0 && Partita.MatriceScacchiera[row + 1, col - 1] != null && Partita.MatriceScacchiera[row + 1, col - 1].Colore != colore)
+            else
             {
-                listaCelle.Add(new List<int>());
-                listaCelle[listaCelle.Count - 1].Add(row + 1);
-                listaCelle[listaCelle.Count - 1].Add(col - 1);
+                if (row + 1 <= 7 && col + 1 <= 7 && Partita.MatriceScacchiera[row + 1, col + 1] != null && Partita.MatriceScacchiera[row + 1, col + 1].Colore == colore)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row + 1);
+                    listaCelle[listaCelle.Count - 1].Add(col + 1);
+                }
+                if (row + 1 <= 7 && col - 1 >= 0 && Partita.MatriceScacchiera[row + 1, col - 1] != null && Partita.MatriceScacchiera[row + 1, col - 1].Colore == colore)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row + 1);
+                    listaCelle[listaCelle.Count - 1].Add(col - 1);
+                }
             }
         }
 
-        return listaCelle;
+            return listaCelle;
     }
 
     public override List<List<int>> checkMosse(int row, int col)
