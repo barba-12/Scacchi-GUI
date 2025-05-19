@@ -34,6 +34,11 @@ public class Cavallo : Figura
         return 3;
     }
 
+    public override List<List<int>> checkScacco(int row, int col)
+    {
+        return checkMosse(row, col);
+    }
+
     //funzione mosse possibili dentro la scacchiera
 
     //funzione per capire quali di quelle cordinate puo mangiare

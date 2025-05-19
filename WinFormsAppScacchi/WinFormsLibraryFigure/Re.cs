@@ -35,27 +35,29 @@ public class Re : Figura
         return 0;
     }
 
-    /*private bool checkMovLibero(int x, int y) {
+    public override List<List<int>> checkScacco(int row, int col)
+    {
+        return checkMosse(row, col);
+    }
+
+    private bool checkMovLibero(int x, int y) {
         //controllare se delle figure di colore opposto si possono muovore in questa casella nel caso limiare il movimento
         for (int i = 0; i < Partita.MatriceScacchiera.GetLength(0); i++)
         {
             for (int j = 0; j < Partita.MatriceScacchiera.GetLength(0); j++)
             {
-                //controllo che non sia un re altrimenti va in stackOverflow richimandosi all'infinito
-                if (Partita.MatriceScacchiera[i, j] != null && Partita.MatriceScacchiera[i, j].Colore != colore && !(Partita.MatriceScacchiera[i, j] is Re))
+                if (Partita.MatriceScacchiera[i, j] != null && Partita.MatriceScacchiera[i, j].Colore != colore)
                 {
-                    List<List<int>> lista = Partita.MatriceScacchiera[i, j].checkMovimeto(i, j, false)[0];
-                    //se nelle cordinate di lista[1] (mangia) ce un re blocco mov a tutte le figure del colore del re tranne quelle che possono mangiare la figura che sta mettendo sotto scacco il re
-                    foreach (List<int> li in lista)
+                    List<List<int>> celleScacco = Partita.MatriceScacchiera[i, j].checkScacco(i, j);
+                    foreach (List<int> l in celleScacco)
                     {
-                        Console.WriteLine($"{li[0]} - {li[1]} / {x} - {y}");
-                        if (li[0] == x && li[1] == y) return false;
+                        if (x == l[0] && y == l[1]) return false;
                     }
                 }
             }
         }
         return true;
-    }*/
+    }
     public override List<List<int>> checkMangia(int row, int col)
     {
         List<List<int>> listaCelle = new List<List<int>>();
@@ -98,7 +100,7 @@ public class Re : Figura
 
         foreach (List<int> l in checkMosse(row, col))
         {
-            if (Partita.MatriceScacchiera[l[0], l[1]] == null)
+            if (Partita.MatriceScacchiera[l[0], l[1]] == null && checkMovLibero(l[0], l[1]))
             {
                 listaCelle.Add(new List<int>());
                 listaCelle[listaCelle.Count - 1].Add(l[0]);

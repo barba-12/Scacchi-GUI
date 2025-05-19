@@ -45,7 +45,7 @@ public class Alfiere : Figura
     {
         List<List<int>> listaCelle = new List<List<int>>();
 
-        //server per vedere se interrompere la generazione delle diagonali
+        //serve per vedere se interrompere la generazione delle diagonali
         List<bool> checkDiagonale = new List<bool>() { true, true, true, true };
 
         //massimo sette punti in diagonale
@@ -87,6 +87,55 @@ public class Alfiere : Figura
 
         return listaCelle;
     }
+    public override List<List<int>> checkScacco(int row, int col)
+    {
+        List<List<int>> listaCelle = new List<List<int>>();
+
+        //server per vedere se interrompere la generazione delle diagonali
+        List<bool> checkDiagonale = new List<bool>() { true, true, true, true };
+
+        //massimo sette punti in diagonale
+        for (int i = 1; i < 8; i++)
+        {
+            //basso-destra
+            if (checkDiagonale[0] == true && (row + i <= 7 && col + i <= 7))
+            {
+                listaCelle.Add(new List<int>());
+                listaCelle[listaCelle.Count - 1].Add(row + i);
+                listaCelle[listaCelle.Count - 1].Add(col + i);
+                if (Partita.MatriceScacchiera[row + i, col + i] != null && !(Partita.MatriceScacchiera[row + i, col + i] is Re)) checkDiagonale[0] = false;
+            }
+            else checkDiagonale[0] = false;
+            //alto-sinistra
+            if (checkDiagonale[1] == true && (row - i >= 0 && col - i >= 0))
+            {
+                listaCelle.Add(new List<int>());
+                listaCelle[listaCelle.Count - 1].Add(row - i);
+                listaCelle[listaCelle.Count - 1].Add(col - i);
+                if (Partita.MatriceScacchiera[row - i, col - i] != null && !(Partita.MatriceScacchiera[row - i, col - i] is Re)) checkDiagonale[1] = false;
+            }
+            else checkDiagonale[1] = false;
+            //basso-sinistra
+            if (checkDiagonale[2] == true && (row + i <= 7 && col - i >= 0))
+            {
+                listaCelle.Add(new List<int>());
+                listaCelle[listaCelle.Count - 1].Add(row + i);
+                listaCelle[listaCelle.Count - 1].Add(col - i);
+                if (Partita.MatriceScacchiera[row + i, col - i] != null && !(Partita.MatriceScacchiera[row + i, col - i] is Re)) checkDiagonale[2] = false;
+            }
+            else checkDiagonale[2] = false;
+            //alto-destra
+            if (checkDiagonale[3] == true && (col + i <= 7 && row - i >= 0))
+            {
+                listaCelle.Add(new List<int>());
+                listaCelle[listaCelle.Count - 1].Add(row - i);
+                listaCelle[listaCelle.Count - 1].Add(col + i);
+                if (Partita.MatriceScacchiera[row - i, col + i] != null && !(Partita.MatriceScacchiera[row - i, col + i] is Re)) checkDiagonale[3] = false;
+            }
+            else checkDiagonale[3] = false;
+        }
+        return listaCelle;
+    }
 
     public List<List<int>> checkDiagonali(int row, int col)
     {
@@ -99,39 +148,41 @@ public class Alfiere : Figura
         for (int i = 1; i < 8; i++)
         {
             //basso-destra
-            if (checkDiagonale[0] == true && (row + i <= 7 && col + i <= 7) && Partita.MatriceScacchiera[row+i, col+i] == null)
-            {
+            if (checkDiagonale[0] == true && (row + i <= 7 && col + i <= 7)) {
                 listaCelle.Add(new List<int>());
                 listaCelle[listaCelle.Count - 1].Add(row + i);
                 listaCelle[listaCelle.Count - 1].Add(col + i);
+                if (Partita.MatriceScacchiera[row + i, col + i] != null) checkDiagonale[0] = false;
             }
             else checkDiagonale[0] = false;
             //alto-sinistra
-            if (checkDiagonale[1] == true && (row - i >= 0 && col - i >= 0) && Partita.MatriceScacchiera[row - i, col - i] == null)
+            if (checkDiagonale[1] == true && (row - i >= 0 && col - i >= 0))
             {
                 listaCelle.Add(new List<int>());
                 listaCelle[listaCelle.Count - 1].Add(row - i);
                 listaCelle[listaCelle.Count - 1].Add(col - i);
+                if (Partita.MatriceScacchiera[row - i, col - i] != null) checkDiagonale[1] = false;
             }
             else checkDiagonale[1] = false;
             //basso-sinistra
-            if (checkDiagonale[2] == true && (row + i <= 7 && col - i >= 0) && Partita.MatriceScacchiera[row + i, col - i] == null)
+            if (checkDiagonale[2] == true && (row + i <= 7 && col - i >= 0))
             {
                 listaCelle.Add(new List<int>());
                 listaCelle[listaCelle.Count - 1].Add(row + i);
                 listaCelle[listaCelle.Count - 1].Add(col - i);
+                if (Partita.MatriceScacchiera[row + i, col - i] != null) checkDiagonale[2] = false;
             }
             else checkDiagonale[2] = false;
             //alto-destra
-            if (checkDiagonale[3] == true && col + i <= 7 && row - i >= 0 && Partita.MatriceScacchiera[row - i, col + i] == null)
+            if (checkDiagonale[3] == true && (col + i <= 7 && row - i >= 0))
             {
                 listaCelle.Add(new List<int>());
                 listaCelle[listaCelle.Count - 1].Add(row - i);
                 listaCelle[listaCelle.Count - 1].Add(col + i);
+                if (Partita.MatriceScacchiera[row - i, col + i] != null) checkDiagonale[3] = false;
             }
             else checkDiagonale[3] = false;
         }
-
         return listaCelle;
     }
 

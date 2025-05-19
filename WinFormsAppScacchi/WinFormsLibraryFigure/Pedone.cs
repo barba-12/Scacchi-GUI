@@ -35,6 +35,44 @@ public class Pedone : Figura
         firstMove = false;
     }
 
+    public override List<List<int>> checkScacco(int row, int col)
+    {
+        List<List<int>> listaCelle = new List<List<int>>();
+
+        if (colore)
+        {
+            if (row - 1 >= 0 && col - 1 >= 0)
+            {
+                listaCelle.Add(new List<int>());
+                listaCelle[listaCelle.Count - 1].Add(row - 1);
+                listaCelle[listaCelle.Count - 1].Add(col - 1);
+            }
+            if (row - 1 >= 0 && col + 1 <= 7)
+            {
+                listaCelle.Add(new List<int>());
+                listaCelle[listaCelle.Count - 1].Add(row - 1);
+                listaCelle[listaCelle.Count - 1].Add(col + 1);
+            }
+        }
+        else
+        {
+            if (row + 1 <= 7 && col + 1 <= 7)
+            {
+                listaCelle.Add(new List<int>());
+                listaCelle[listaCelle.Count - 1].Add(row + 1);
+                listaCelle[listaCelle.Count - 1].Add(col + 1);
+            }
+            if (row + 1 <= 7 && col - 1 >= 0)
+            {
+                listaCelle.Add(new List<int>());
+                listaCelle[listaCelle.Count - 1].Add(row + 1);
+                listaCelle[listaCelle.Count - 1].Add(col - 1);
+            }
+        }
+
+        return listaCelle;
+    }
+
     public bool Protetto { get => protetto; set => protetto = value; }
     public override List<List<int>> checkMangia(int row, int col)
     {

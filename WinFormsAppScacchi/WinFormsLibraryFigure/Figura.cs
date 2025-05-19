@@ -22,6 +22,7 @@ namespace WinFormsLibraryFigure
         public abstract List<List<int>> checkMosse(int row, int col);
         public abstract List<List<int>> checkMangia(int row, int col);
         public abstract List<List<int>> checkSposta(int row, int col);
+        public abstract List<List<int>> checkScacco(int row, int col);
         public abstract int getPunteggio();
         public bool checkProtetto() {
             List<List<int>> cordinate = new List<List<int>>();
