@@ -28,7 +28,19 @@ public class Alfiere : Figura
         //sia per afiere che per torre e succ. regina
         List<List<int>> listaCelle = new List<List<int>>();
 
-        if (mod)
+        if (!mod)
+        {
+            foreach (List<int> l in checkDiagonali(row, col))
+            {
+                if (Partita.MatriceScacchiera[l[0], l[1]] != null && Partita.MatriceScacchiera[l[0], l[1]].Colore == colore)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(l[0]);
+                    listaCelle[listaCelle.Count - 1].Add(l[1]);
+                }
+            }
+    }   
+        else if (Movimento)
         {
             foreach (List<int> l in checkDiagonali(row, col))
             {
@@ -40,19 +52,8 @@ public class Alfiere : Figura
                 }
             }
         }
-        else {
-            foreach (List<int> l in checkDiagonali(row, col))
-            {
-                if (Partita.MatriceScacchiera[l[0], l[1]] != null && Partita.MatriceScacchiera[l[0], l[1]].Colore == colore)
-                {
-                    listaCelle.Add(new List<int>());
-                    listaCelle[listaCelle.Count - 1].Add(l[0]);
-                    listaCelle[listaCelle.Count - 1].Add(l[1]);
-                }
-            }
-        }
 
-            return listaCelle;
+        return listaCelle;
     }
 
     public override List<List<int>> checkMosse(int row, int col)
@@ -101,7 +102,7 @@ public class Alfiere : Figura
 
         return listaCelle;
     }
-    public override List<List<int>> checkScacco(int row, int col)
+    public override List<List<int>> checkLimitaMosseRe(int row, int col)
     {
         List<List<int>> listaCelle = new List<List<int>>();
 
@@ -148,6 +149,7 @@ public class Alfiere : Figura
             }
             else checkDiagonale[3] = false;
         }
+        
         return listaCelle;
     }
 
@@ -204,13 +206,15 @@ public class Alfiere : Figura
     {
         List<List<int>> listaCelle = new List<List<int>>();
 
-        foreach (List<int> l in checkDiagonali(row, col))
-        {
-            if (Partita.MatriceScacchiera[l[0], l[1]] == null)
+        if (Movimento) {
+            foreach (List<int> l in checkDiagonali(row, col))
             {
-                listaCelle.Add(new List<int>());
-                listaCelle[listaCelle.Count - 1].Add(l[0]);
-                listaCelle[listaCelle.Count - 1].Add(l[1]);
+                if (Partita.MatriceScacchiera[l[0], l[1]] == null)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(l[0]);
+                    listaCelle[listaCelle.Count - 1].Add(l[1]);
+                }
             }
         }
 

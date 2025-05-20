@@ -35,38 +35,40 @@ public class Pedone : Figura
         firstMove = false;
     }
 
-    public override List<List<int>> checkScacco(int row, int col)
+    public override List<List<int>> checkLimitaMosseRe(int row, int col)
     {
         List<List<int>> listaCelle = new List<List<int>>();
 
-        if (colore)
-        {
-            if (row - 1 >= 0 && col - 1 >= 0)
+        if (Movimento) {
+            if (colore)
             {
-                listaCelle.Add(new List<int>());
-                listaCelle[listaCelle.Count - 1].Add(row - 1);
-                listaCelle[listaCelle.Count - 1].Add(col - 1);
+                if (row - 1 >= 0 && col - 1 >= 0)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row - 1);
+                    listaCelle[listaCelle.Count - 1].Add(col - 1);
+                }
+                if (row - 1 >= 0 && col + 1 <= 7)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row - 1);
+                    listaCelle[listaCelle.Count - 1].Add(col + 1);
+                }
             }
-            if (row - 1 >= 0 && col + 1 <= 7)
+            else
             {
-                listaCelle.Add(new List<int>());
-                listaCelle[listaCelle.Count - 1].Add(row - 1);
-                listaCelle[listaCelle.Count - 1].Add(col + 1);
-            }
-        }
-        else
-        {
-            if (row + 1 <= 7 && col + 1 <= 7)
-            {
-                listaCelle.Add(new List<int>());
-                listaCelle[listaCelle.Count - 1].Add(row + 1);
-                listaCelle[listaCelle.Count - 1].Add(col + 1);
-            }
-            if (row + 1 <= 7 && col - 1 >= 0)
-            {
-                listaCelle.Add(new List<int>());
-                listaCelle[listaCelle.Count - 1].Add(row + 1);
-                listaCelle[listaCelle.Count - 1].Add(col - 1);
+                if (row + 1 <= 7 && col + 1 <= 7)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row + 1);
+                    listaCelle[listaCelle.Count - 1].Add(col + 1);
+                }
+                if (row + 1 <= 7 && col - 1 >= 0)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row + 1);
+                    listaCelle[listaCelle.Count - 1].Add(col - 1);
+                }
             }
         }
 
@@ -78,43 +80,7 @@ public class Pedone : Figura
     {
         List<List<int>> listaCelle = new List<List<int>>();
 
-        //verificare digolonali
-        //nero +1 +1 / +1 -1
-        //bianco -1 -1 / -1 +1
-
-        if (mod) {
-            if (colore)
-            {
-                if (row - 1 >= 0 && col - 1 >= 0 && Partita.MatriceScacchiera[row - 1, col - 1] != null && Partita.MatriceScacchiera[row - 1, col - 1].Colore != colore)
-                {
-                    listaCelle.Add(new List<int>());
-                    listaCelle[listaCelle.Count - 1].Add(row - 1);
-                    listaCelle[listaCelle.Count - 1].Add(col - 1);
-                }
-                if (row - 1 >= 0 && col + 1 <= 7 && Partita.MatriceScacchiera[row - 1, col + 1] != null && Partita.MatriceScacchiera[row - 1, col + 1].Colore != colore)
-                {
-                    listaCelle.Add(new List<int>());
-                    listaCelle[listaCelle.Count - 1].Add(row - 1);
-                    listaCelle[listaCelle.Count - 1].Add(col + 1);
-                }
-            }
-            else
-            {
-                if (row + 1 <= 7 && col + 1 <= 7 && Partita.MatriceScacchiera[row + 1, col + 1] != null && Partita.MatriceScacchiera[row + 1, col + 1].Colore != colore)
-                {
-                    listaCelle.Add(new List<int>());
-                    listaCelle[listaCelle.Count - 1].Add(row + 1);
-                    listaCelle[listaCelle.Count - 1].Add(col + 1);
-                }
-                if (row + 1 <= 7 && col - 1 >= 0 && Partita.MatriceScacchiera[row + 1, col - 1] != null && Partita.MatriceScacchiera[row + 1, col - 1].Colore != colore)
-                {
-                    listaCelle.Add(new List<int>());
-                    listaCelle[listaCelle.Count - 1].Add(row + 1);
-                    listaCelle[listaCelle.Count - 1].Add(col - 1);
-                }
-            }
-        }
-        else
+        if (!mod)
         {
             if (colore)
             {
@@ -147,52 +113,86 @@ public class Pedone : Figura
                 }
             }
         }
+        else if (Movimento)
+        {
+            if (colore)
+            {
+                if (row - 1 >= 0 && col - 1 >= 0 && Partita.MatriceScacchiera[row - 1, col - 1] != null && Partita.MatriceScacchiera[row - 1, col - 1].Colore != colore)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row - 1);
+                    listaCelle[listaCelle.Count - 1].Add(col - 1);
+                }
+                if (row - 1 >= 0 && col + 1 <= 7 && Partita.MatriceScacchiera[row - 1, col + 1] != null && Partita.MatriceScacchiera[row - 1, col + 1].Colore != colore)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row - 1);
+                    listaCelle[listaCelle.Count - 1].Add(col + 1);
+                }
+            }
+            else
+            {
+                if (row + 1 <= 7 && col + 1 <= 7 && Partita.MatriceScacchiera[row + 1, col + 1] != null && Partita.MatriceScacchiera[row + 1, col + 1].Colore != colore)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row + 1);
+                    listaCelle[listaCelle.Count - 1].Add(col + 1);
+                }
+                if (row + 1 <= 7 && col - 1 >= 0 && Partita.MatriceScacchiera[row + 1, col - 1] != null && Partita.MatriceScacchiera[row + 1, col - 1].Colore != colore)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row + 1);
+                    listaCelle[listaCelle.Count - 1].Add(col - 1);
+                }
+            }
 
-            return listaCelle;
+        }
+
+        return listaCelle;
     }
 
     public override List<List<int>> checkMosse(int row, int col)
     {
         List<List<int>> listaCelle = new List<List<int>>();
 
-        if (!colore)
-        {
-            if ((row + 1 <= 7 && row + 2 <= 7) && firstMove)
+            if (!colore)
             {
-                listaCelle.Add(new List<int>());
-                listaCelle[listaCelle.Count - 1].Add(row + 1);
-                listaCelle[listaCelle.Count - 1].Add(col);
+                if ((row + 1 <= 7 && row + 2 <= 7) && firstMove)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row + 1);
+                    listaCelle[listaCelle.Count - 1].Add(col);
 
-                listaCelle.Add(new List<int>());
-                listaCelle[listaCelle.Count - 1].Add(row + 2);
-                listaCelle[listaCelle.Count - 1].Add(col);
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row + 2);
+                    listaCelle[listaCelle.Count - 1].Add(col);
+                }
+                else if (row + 1 <= 7)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row + 1);
+                    listaCelle[listaCelle.Count - 1].Add(col);
+                }
             }
-            else if (row + 1 <= 7)
+            else
             {
-                listaCelle.Add(new List<int>());
-                listaCelle[listaCelle.Count - 1].Add(row + 1);
-                listaCelle[listaCelle.Count - 1].Add(col);
-            }
-        }
-        else
-        {
-            if ((row - 1 >= 0 && row - 2 >= 0) && firstMove)
-            {
-                listaCelle.Add(new List<int>());
-                listaCelle[listaCelle.Count - 1].Add(row - 1);
-                listaCelle[listaCelle.Count - 1].Add(col);
+                if ((row - 1 >= 0 && row - 2 >= 0) && firstMove)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row - 1);
+                    listaCelle[listaCelle.Count - 1].Add(col);
 
-                listaCelle.Add(new List<int>());
-                listaCelle[listaCelle.Count - 1].Add(row - 2);
-                listaCelle[listaCelle.Count - 1].Add(col);
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row - 2);
+                    listaCelle[listaCelle.Count - 1].Add(col);
+                }
+                else if (row - 1 >= 0)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row - 1);
+                    listaCelle[listaCelle.Count - 1].Add(col);
+                }
             }
-            else if (row - 1 >= 0 )
-            {
-                listaCelle.Add(new List<int>());
-                listaCelle[listaCelle.Count - 1].Add(row - 1);
-                listaCelle[listaCelle.Count - 1].Add(col);
-            }
-        }
 
         return listaCelle;
     }
@@ -201,13 +201,16 @@ public class Pedone : Figura
     {
         List<List<int>> listaCelle = new List<List<int>>();
 
-        foreach (List<int> l in checkMosse(row, col))
-        {
-            if (Partita.MatriceScacchiera[l[0], l[1]] == null)
+        if (Movimento) {
+            foreach (List<int> l in checkMosse(row, col))
             {
-                listaCelle.Add(new List<int>());
-                listaCelle[listaCelle.Count - 1].Add(l[0]);
-                listaCelle[listaCelle.Count - 1].Add(l[1]);
+                if (Partita.MatriceScacchiera[l[0], l[1]] == null)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(l[0]);
+                    listaCelle[listaCelle.Count - 1].Add(l[1]);
+                }
+                else break;
             }
         }
 

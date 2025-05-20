@@ -109,9 +109,15 @@ public partial class FormScacchiGUI : Form
             //Console.WriteLine(clickedLabel.Text);
             if (clickedLabel.Text == "o" || clickedLabel.Text == "m")
             {
+
+
+                bool ris = figura.checkScacco(cordinate[0], cordinate[1]);
+                if (ris) Console.WriteLine("scacco");
+
                 int vittoria = checkVittoria();
                 if (vittoria == 1) Console.WriteLine("vittoria bianco");
                 else if (vittoria == 2) Console.WriteLine("vittoria nero");
+
                 //controllo che sia un pedono e cambio la prima mossa su false
                 if (figura.GetSimbolo() == "♙" || figura.GetSimbolo() == "♟")
                 {

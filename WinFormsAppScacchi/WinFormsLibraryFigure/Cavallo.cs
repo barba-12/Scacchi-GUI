@@ -34,9 +34,10 @@ public class Cavallo : Figura
         return 3;
     }
 
-    public override List<List<int>> checkScacco(int row, int col)
+    public override List<List<int>> checkLimitaMosseRe(int row, int col)
     {
-        return checkMosse(row, col);
+        if(Movimento) return checkMosse(row, col);
+        return new List<List<int>>();
     }
 
     //funzione mosse possibili dentro la scacchiera
@@ -49,10 +50,11 @@ public class Cavallo : Figura
     {
         List<List<int>> listaCelle = new List<List<int>>();
 
-        if (mod) {
+        if (!mod)
+        {
             foreach (List<int> l in checkMosse(row, col))
             {
-                if (Partita.MatriceScacchiera[l[0], l[1]] != null && Partita.MatriceScacchiera[l[0], l[1]].Colore != colore)
+                if (Partita.MatriceScacchiera[l[0], l[1]] != null && Partita.MatriceScacchiera[l[0], l[1]].Colore == colore)
                 {
                     listaCelle.Add(new List<int>());
                     listaCelle[listaCelle.Count - 1].Add(l[0]);
@@ -60,11 +62,11 @@ public class Cavallo : Figura
                 }
             }
         }
-        else
+        else if (Movimento)
         {
             foreach (List<int> l in checkMosse(row, col))
             {
-                if (Partita.MatriceScacchiera[l[0], l[1]] != null && Partita.MatriceScacchiera[l[0], l[1]].Colore == colore)
+                if (Partita.MatriceScacchiera[l[0], l[1]] != null && Partita.MatriceScacchiera[l[0], l[1]].Colore != colore)
                 {
                     listaCelle.Add(new List<int>());
                     listaCelle[listaCelle.Count - 1].Add(l[0]);
@@ -96,12 +98,15 @@ public class Cavallo : Figura
     {
         List<List<int>> listaCelle = new List<List<int>>();
 
-        foreach (List<int> l in checkMosse(row, col))
-        {
-            if (Partita.MatriceScacchiera[l[0], l[1]] == null) {
-                listaCelle.Add(new List<int>());
-                listaCelle[listaCelle.Count-1].Add(l[0]);
-                listaCelle[listaCelle.Count-1].Add(l[1]);
+        if (Movimento) {
+            foreach (List<int> l in checkMosse(row, col))
+            {
+                if (Partita.MatriceScacchiera[l[0], l[1]] == null)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(l[0]);
+                    listaCelle[listaCelle.Count - 1].Add(l[1]);
+                }
             }
         }
 

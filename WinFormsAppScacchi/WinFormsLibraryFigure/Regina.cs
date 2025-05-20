@@ -22,109 +22,113 @@ public class Regina : Figura
     {
         return 9;
     }
-    public override List<List<int>> checkScacco(int row, int col)
+    public override List<List<int>> checkLimitaMosseRe(int row, int col)
     {
         List<List<int>> listaCelle = new List<List<int>>();
 
-        List<bool> check = new List<bool>() { true, true, true, true, true, true, true, true };
+        if (Movimento) {
+            List<bool> check = new List<bool>() { true, true, true, true, true, true, true, true };
 
-        for (int i = 1; i < 8; i++)
-        {
-            //destra
-            if (check[0] && row + i <= 7)
+            for (int i = 1; i < 8; i++)
             {
-                listaCelle.Add(new List<int>());
-                listaCelle[listaCelle.Count - 1].Add(row + i);
-                listaCelle[listaCelle.Count - 1].Add(col);
-                if (Partita.MatriceScacchiera[row + i, col] != null && !(Partita.MatriceScacchiera[row + i, col] is Re)) check[0] = false;
+                //destra
+                if (check[0] && row + i <= 7)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row + i);
+                    listaCelle[listaCelle.Count - 1].Add(col);
+                    if (Partita.MatriceScacchiera[row + i, col] != null && !(Partita.MatriceScacchiera[row + i, col] is Re)) check[0] = false;
+                }
+                else check[0] = false;
+                //sinistra
+                if (check[1] && row - i >= 0)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row - i);
+                    listaCelle[listaCelle.Count - 1].Add(col);
+                    if (Partita.MatriceScacchiera[row - i, col] != null && !(Partita.MatriceScacchiera[row - i, col] is Re)) check[1] = false;
+                }
+                else check[1] = false;
+                //sotto
+                if (check[2] == true && col + i <= 7)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row);
+                    listaCelle[listaCelle.Count - 1].Add(col + i);
+                    if (Partita.MatriceScacchiera[row, col + 1] != null && !(Partita.MatriceScacchiera[row, col + i] is Re)) check[2] = false;
+                }
+                else check[2] = false;
+                //sopra
+                if (check[3] == true && col - i >= 0)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row);
+                    listaCelle[listaCelle.Count - 1].Add(col - i);
+                    if (Partita.MatriceScacchiera[row, col - 1] != null && !(Partita.MatriceScacchiera[row, col - 1] is Re)) check[3] = false;
+                }
+                else check[3] = false;
+                //basso-destra
+                if (check[4] == true && (row + i <= 7 && col + i <= 7))
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row + i);
+                    listaCelle[listaCelle.Count - 1].Add(col + i);
+                    if (Partita.MatriceScacchiera[row + i, col + i] != null && !(Partita.MatriceScacchiera[row + i, col + i] is Re)) check[4] = false;
+                }
+                else check[4] = false;
+                //alto-sinistra
+                if (check[5] == true && (row - i >= 0 && col - i >= 0))
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row - i);
+                    listaCelle[listaCelle.Count - 1].Add(col - i);
+                    if (Partita.MatriceScacchiera[row - i, col - i] != null && !(Partita.MatriceScacchiera[row - i, col - i] is Re)) check[5] = false;
+                }
+                else check[5] = false;
+                //basso-sinistra
+                if (check[6] == true && (row + i <= 7 && col - i >= 0))
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row + i);
+                    listaCelle[listaCelle.Count - 1].Add(col - i);
+                    if (Partita.MatriceScacchiera[row + i, col - i] != null && !(Partita.MatriceScacchiera[row + i, col - i] is Re)) check[6] = false;
+                }
+                else check[6] = false;
+                //alto-destra
+                if (check[7] == true && (col + i <= 7 && row - i >= 0))
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(row - i);
+                    listaCelle[listaCelle.Count - 1].Add(col + i);
+                    if (Partita.MatriceScacchiera[row - i, col + i] != null && !(Partita.MatriceScacchiera[row - i, col + i] is Re)) check[7] = false;
+                }
+                else check[7] = false;
             }
-            else check[0] = false;
-            //sinistra
-            if (check[1] && row - i >= 0)
-            {
-                listaCelle.Add(new List<int>());
-                listaCelle[listaCelle.Count - 1].Add(row - i);
-                listaCelle[listaCelle.Count - 1].Add(col);
-                if (Partita.MatriceScacchiera[row - i, col] != null && !(Partita.MatriceScacchiera[row - i, col] is Re)) check[1] = false;
-            }
-            else check[1] = false;
-            //sotto
-            if (check[2] == true && col + i <= 7)
-            {
-                listaCelle.Add(new List<int>());
-                listaCelle[listaCelle.Count - 1].Add(row);
-                listaCelle[listaCelle.Count - 1].Add(col + i);
-                if (Partita.MatriceScacchiera[row, col + 1] != null && !(Partita.MatriceScacchiera[row, col + i] is Re)) check[2] = false;
-            }
-            else check[2] = false;
-            //sopra
-            if (check[3] == true && col - i >= 0)
-            {
-                listaCelle.Add(new List<int>());
-                listaCelle[listaCelle.Count - 1].Add(row);
-                listaCelle[listaCelle.Count - 1].Add(col - i);
-                if (Partita.MatriceScacchiera[row, col - 1] != null && !(Partita.MatriceScacchiera[row, col - 1] is Re)) check[3] = false;
-            }
-            else check[3] = false;
-            //basso-destra
-            if (check[4] == true && (row + i <= 7 && col + i <= 7))
-            {
-                listaCelle.Add(new List<int>());
-                listaCelle[listaCelle.Count - 1].Add(row + i);
-                listaCelle[listaCelle.Count - 1].Add(col + i);
-                if (Partita.MatriceScacchiera[row + i, col + i] != null && !(Partita.MatriceScacchiera[row + i, col + i] is Re)) check[4] = false;
-            }
-            else check[4] = false;
-            //alto-sinistra
-            if (check[5] == true && (row - i >= 0 && col - i >= 0))
-            {
-                listaCelle.Add(new List<int>());
-                listaCelle[listaCelle.Count - 1].Add(row - i);
-                listaCelle[listaCelle.Count - 1].Add(col - i);
-                if (Partita.MatriceScacchiera[row - i, col - i] != null && !(Partita.MatriceScacchiera[row - i, col - i] is Re)) check[5] = false;
-            }
-            else check[5] = false;
-            //basso-sinistra
-            if (check[6] == true && (row + i <= 7 && col - i >= 0))
-            {
-                listaCelle.Add(new List<int>());
-                listaCelle[listaCelle.Count - 1].Add(row + i);
-                listaCelle[listaCelle.Count - 1].Add(col - i);
-                if (Partita.MatriceScacchiera[row + i, col - i] != null && !(Partita.MatriceScacchiera[row + i, col - i] is Re)) check[6] = false;
-            }
-            else check[6] = false;
-            //alto-destra
-            if (check[7] == true && (col + i <= 7 && row - i >= 0))
-            {
-                listaCelle.Add(new List<int>());
-                listaCelle[listaCelle.Count - 1].Add(row - i);
-                listaCelle[listaCelle.Count - 1].Add(col + i);
-                if (Partita.MatriceScacchiera[row - i, col + i] != null && !(Partita.MatriceScacchiera[row - i, col + i] is Re)) check[7] = false;
-            }
-            else check[7] = false;
         }
+        
         return listaCelle;
     }
     public override List<List<int>> checkMangia(int row, int col, bool mod)
     {
         List<List<int>> listaCelle = new List<List<int>>();
 
-        if (mod)
+        if (!mod)
         {
             foreach (List<int> l in checkSpost(row, col))
             {
-                if (Partita.MatriceScacchiera[l[0], l[1]] != null && Partita.MatriceScacchiera[l[0], l[1]].Colore != colore)
+                if (Partita.MatriceScacchiera[l[0], l[1]] != null && Partita.MatriceScacchiera[l[0], l[1]].Colore == colore)
                 {
                     listaCelle.Add(new List<int>());
                     listaCelle[listaCelle.Count - 1].Add(l[0]);
                     listaCelle[listaCelle.Count - 1].Add(l[1]);
                 }
             }
-        }
-        else {
+        }            
+        else if (Movimento)
+        {
             foreach (List<int> l in checkSpost(row, col))
             {
-                if (Partita.MatriceScacchiera[l[0], l[1]] != null && Partita.MatriceScacchiera[l[0], l[1]].Colore == colore)
+                if (Partita.MatriceScacchiera[l[0], l[1]] != null && Partita.MatriceScacchiera[l[0], l[1]].Colore != colore)
                 {
                     listaCelle.Add(new List<int>());
                     listaCelle[listaCelle.Count - 1].Add(l[0]);
@@ -306,13 +310,16 @@ public class Regina : Figura
     {
         List<List<int>> listaCelle = new List<List<int>>();
 
-        foreach (List<int> l in checkSpost(row, col))
+        if (Movimento)
         {
-            if (Partita.MatriceScacchiera[l[0], l[1]] == null)
+            foreach (List<int> l in checkSpost(row, col))
             {
-                listaCelle.Add(new List<int>());
-                listaCelle[listaCelle.Count - 1].Add(l[0]);
-                listaCelle[listaCelle.Count - 1].Add(l[1]);
+                if (Partita.MatriceScacchiera[l[0], l[1]] == null)
+                {
+                    listaCelle.Add(new List<int>());
+                    listaCelle[listaCelle.Count - 1].Add(l[0]);
+                    listaCelle[listaCelle.Count - 1].Add(l[1]);
+                }
             }
         }
 

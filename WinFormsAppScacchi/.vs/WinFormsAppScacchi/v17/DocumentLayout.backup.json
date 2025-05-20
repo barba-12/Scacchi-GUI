@@ -3,36 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\riki\\Desktop\\Scacchi-GUI\\WinFormsAppScacchi\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{488F2955-8F21-46ED-BC8D-059825DA8BC7}|WinFormsAppScacchi\\WinFormsAppScacchi.csproj|c:\\users\\riki\\desktop\\scacchi-gui\\winformsappscacchi\\winformsappscacchi\\formscacchigui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{488F2955-8F21-46ED-BC8D-059825DA8BC7}|WinFormsAppScacchi\\WinFormsAppScacchi.csproj|solutionrelative:winformsappscacchi\\formscacchigui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C07DAFB8-CC89-44FA-9BA7-B74504C511C4}|WinFormsLibraryFigure\\WinFormsLibraryFigure.csproj|c:\\users\\riki\\desktop\\scacchi-gui\\winformsappscacchi\\winformslibraryfigure\\re.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C07DAFB8-CC89-44FA-9BA7-B74504C511C4}|WinFormsLibraryFigure\\WinFormsLibraryFigure.csproj|solutionrelative:winformslibraryfigure\\re.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C07DAFB8-CC89-44FA-9BA7-B74504C511C4}|WinFormsLibraryFigure\\WinFormsLibraryFigure.csproj|c:\\users\\riki\\desktop\\scacchi-gui\\winformsappscacchi\\winformslibraryfigure\\pedone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C07DAFB8-CC89-44FA-9BA7-B74504C511C4}|WinFormsLibraryFigure\\WinFormsLibraryFigure.csproj|solutionrelative:winformslibraryfigure\\pedone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C07DAFB8-CC89-44FA-9BA7-B74504C511C4}|WinFormsLibraryFigure\\WinFormsLibraryFigure.csproj|c:\\users\\riki\\desktop\\scacchi-gui\\winformsappscacchi\\winformslibraryfigure\\cavallo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C07DAFB8-CC89-44FA-9BA7-B74504C511C4}|WinFormsLibraryFigure\\WinFormsLibraryFigure.csproj|solutionrelative:winformslibraryfigure\\cavallo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C07DAFB8-CC89-44FA-9BA7-B74504C511C4}|WinFormsLibraryFigure\\WinFormsLibraryFigure.csproj|c:\\users\\riki\\desktop\\scacchi-gui\\winformsappscacchi\\winformslibraryfigure\\regina.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C07DAFB8-CC89-44FA-9BA7-B74504C511C4}|WinFormsLibraryFigure\\WinFormsLibraryFigure.csproj|solutionrelative:winformslibraryfigure\\regina.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C07DAFB8-CC89-44FA-9BA7-B74504C511C4}|WinFormsLibraryFigure\\WinFormsLibraryFigure.csproj|c:\\users\\riki\\desktop\\scacchi-gui\\winformsappscacchi\\winformslibraryfigure\\torre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C07DAFB8-CC89-44FA-9BA7-B74504C511C4}|WinFormsLibraryFigure\\WinFormsLibraryFigure.csproj|solutionrelative:winformslibraryfigure\\torre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C07DAFB8-CC89-44FA-9BA7-B74504C511C4}|WinFormsLibraryFigure\\WinFormsLibraryFigure.csproj|c:\\users\\riki\\desktop\\scacchi-gui\\winformsappscacchi\\winformslibraryfigure\\alfiere.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C07DAFB8-CC89-44FA-9BA7-B74504C511C4}|WinFormsLibraryFigure\\WinFormsLibraryFigure.csproj|solutionrelative:winformslibraryfigure\\alfiere.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C07DAFB8-CC89-44FA-9BA7-B74504C511C4}|WinFormsLibraryFigure\\WinFormsLibraryFigure.csproj|c:\\users\\riki\\desktop\\scacchi-gui\\winformsappscacchi\\winformslibraryfigure\\torre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C07DAFB8-CC89-44FA-9BA7-B74504C511C4}|WinFormsLibraryFigure\\WinFormsLibraryFigure.csproj|solutionrelative:winformslibraryfigure\\torre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C07DAFB8-CC89-44FA-9BA7-B74504C511C4}|WinFormsLibraryFigure\\WinFormsLibraryFigure.csproj|c:\\users\\riki\\desktop\\scacchi-gui\\winformsappscacchi\\winformslibraryfigure\\regina.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C07DAFB8-CC89-44FA-9BA7-B74504C511C4}|WinFormsLibraryFigure\\WinFormsLibraryFigure.csproj|solutionrelative:winformslibraryfigure\\regina.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C07DAFB8-CC89-44FA-9BA7-B74504C511C4}|WinFormsLibraryFigure\\WinFormsLibraryFigure.csproj|c:\\users\\riki\\desktop\\scacchi-gui\\winformsappscacchi\\winformslibraryfigure\\re.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C07DAFB8-CC89-44FA-9BA7-B74504C511C4}|WinFormsLibraryFigure\\WinFormsLibraryFigure.csproj|solutionrelative:winformslibraryfigure\\re.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C07DAFB8-CC89-44FA-9BA7-B74504C511C4}|WinFormsLibraryFigure\\WinFormsLibraryFigure.csproj|c:\\users\\riki\\desktop\\scacchi-gui\\winformsappscacchi\\winformslibraryfigure\\cavallo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C07DAFB8-CC89-44FA-9BA7-B74504C511C4}|WinFormsLibraryFigure\\WinFormsLibraryFigure.csproj|solutionrelative:winformslibraryfigure\\cavallo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C07DAFB8-CC89-44FA-9BA7-B74504C511C4}|WinFormsLibraryFigure\\WinFormsLibraryFigure.csproj|c:\\users\\riki\\desktop\\scacchi-gui\\winformsappscacchi\\winformslibraryfigure\\pedone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C07DAFB8-CC89-44FA-9BA7-B74504C511C4}|WinFormsLibraryFigure\\WinFormsLibraryFigure.csproj|solutionrelative:winformslibraryfigure\\pedone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C07DAFB8-CC89-44FA-9BA7-B74504C511C4}|WinFormsLibraryFigure\\WinFormsLibraryFigure.csproj|c:\\users\\riki\\desktop\\scacchi-gui\\winformsappscacchi\\winformslibraryfigure\\figura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C07DAFB8-CC89-44FA-9BA7-B74504C511C4}|WinFormsLibraryFigure\\WinFormsLibraryFigure.csproj|solutionrelative:winformslibraryfigure\\figura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{488F2955-8F21-46ED-BC8D-059825DA8BC7}|WinFormsAppScacchi\\WinFormsAppScacchi.csproj|c:\\users\\riki\\desktop\\scacchi-gui\\winformsappscacchi\\winformsappscacchi\\formscacchigui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{488F2955-8F21-46ED-BC8D-059825DA8BC7}|WinFormsAppScacchi\\WinFormsAppScacchi.csproj|solutionrelative:winformsappscacchi\\formscacchigui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C07DAFB8-CC89-44FA-9BA7-B74504C511C4}|WinFormsLibraryFigure\\WinFormsLibraryFigure.csproj|c:\\users\\riki\\desktop\\scacchi-gui\\winformsappscacchi\\winformslibraryfigure\\partita.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -46,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,13 +54,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
               "Title": "Figura.cs",
               "DocumentMoniker": "C:\\Users\\riki\\Desktop\\Scacchi-GUI\\WinFormsAppScacchi\\WinFormsLibraryFigure\\Figura.cs",
               "RelativeDocumentMoniker": "WinFormsLibraryFigure\\Figura.cs",
               "ToolTip": "C:\\Users\\riki\\Desktop\\Scacchi-GUI\\WinFormsAppScacchi\\WinFormsLibraryFigure\\Figura.cs",
               "RelativeToolTip": "WinFormsLibraryFigure\\Figura.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAswCQAAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAADAAAAAAAAAAAAAkwEYAAABWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-07T12:15:20.46Z",
               "EditorCaption": ""
@@ -73,97 +73,98 @@
               "RelativeDocumentMoniker": "WinFormsLibraryFigure\\Partita.cs",
               "ToolTip": "C:\\Users\\riki\\Desktop\\Scacchi-GUI\\WinFormsAppScacchi\\WinFormsLibraryFigure\\Partita.cs",
               "RelativeToolTip": "WinFormsLibraryFigure\\Partita.cs",
-              "ViewState": "AgIAADgAAAAAAAAAAAAAwEQAAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwEQAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-07T10:42:50.336Z"
+              "WhenOpened": "2025-05-07T10:42:50.336Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "Pedone.cs",
               "DocumentMoniker": "C:\\Users\\riki\\Desktop\\Scacchi-GUI\\WinFormsAppScacchi\\WinFormsLibraryFigure\\Pedone.cs",
               "RelativeDocumentMoniker": "WinFormsLibraryFigure\\Pedone.cs",
               "ToolTip": "C:\\Users\\riki\\Desktop\\Scacchi-GUI\\WinFormsAppScacchi\\WinFormsLibraryFigure\\Pedone.cs",
               "RelativeToolTip": "WinFormsLibraryFigure\\Pedone.cs",
-              "ViewState": "AgIAAGoAAAAAAAAAAAAswJQAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAYwFEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-05T08:20:10.949Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Cavallo.cs",
               "DocumentMoniker": "C:\\Users\\riki\\Desktop\\Scacchi-GUI\\WinFormsAppScacchi\\WinFormsLibraryFigure\\Cavallo.cs",
               "RelativeDocumentMoniker": "WinFormsLibraryFigure\\Cavallo.cs",
               "ToolTip": "C:\\Users\\riki\\Desktop\\Scacchi-GUI\\WinFormsAppScacchi\\WinFormsLibraryFigure\\Cavallo.cs",
               "RelativeToolTip": "WinFormsLibraryFigure\\Cavallo.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAiwEoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACAAAAAAAAAAAAAwwD8AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-05T19:20:49.809Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Re.cs",
               "DocumentMoniker": "C:\\Users\\riki\\Desktop\\Scacchi-GUI\\WinFormsAppScacchi\\WinFormsLibraryFigure\\Re.cs",
               "RelativeDocumentMoniker": "WinFormsLibraryFigure\\Re.cs",
               "ToolTip": "C:\\Users\\riki\\Desktop\\Scacchi-GUI\\WinFormsAppScacchi\\WinFormsLibraryFigure\\Re.cs",
               "RelativeToolTip": "WinFormsLibraryFigure\\Re.cs",
-              "ViewState": "AgIAAGMAAAAAAAAAAAAAAHUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADMAAAAAAAAAAAAmwFQAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-05T19:41:26.213Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "Regina.cs",
               "DocumentMoniker": "C:\\Users\\riki\\Desktop\\Scacchi-GUI\\WinFormsAppScacchi\\WinFormsLibraryFigure\\Regina.cs",
               "RelativeDocumentMoniker": "WinFormsLibraryFigure\\Regina.cs",
               "ToolTip": "C:\\Users\\riki\\Desktop\\Scacchi-GUI\\WinFormsAppScacchi\\WinFormsLibraryFigure\\Regina.cs",
               "RelativeToolTip": "WinFormsLibraryFigure\\Regina.cs",
-              "ViewState": "AgIAAFUAAAAAAAAAAAAmwIUAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAGUAAAAAAAAAAAAIwH0AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-05T19:58:43.283Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "Alfiere.cs",
               "DocumentMoniker": "C:\\Users\\riki\\Desktop\\Scacchi-GUI\\WinFormsAppScacchi\\WinFormsLibraryFigure\\Alfiere.cs",
               "RelativeDocumentMoniker": "WinFormsLibraryFigure\\Alfiere.cs",
               "ToolTip": "C:\\Users\\riki\\Desktop\\Scacchi-GUI\\WinFormsAppScacchi\\WinFormsLibraryFigure\\Alfiere.cs",
               "RelativeToolTip": "WinFormsLibraryFigure\\Alfiere.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAxwDQAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAABAAAAAAAAAAAAA8wDUAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-05T19:04:39.465Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "Torre.cs",
               "DocumentMoniker": "C:\\Users\\riki\\Desktop\\Scacchi-GUI\\WinFormsAppScacchi\\WinFormsLibraryFigure\\Torre.cs",
               "RelativeDocumentMoniker": "WinFormsLibraryFigure\\Torre.cs",
               "ToolTip": "C:\\Users\\riki\\Desktop\\Scacchi-GUI\\WinFormsAppScacchi\\WinFormsLibraryFigure\\Torre.cs",
               "RelativeToolTip": "WinFormsLibraryFigure\\Torre.cs",
-              "ViewState": "AgIAADUAAAAAAAAAAAAYwF4AAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAgwGgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-05T19:42:03.848Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 7,
               "Title": "FormScacchiGUI.cs",
               "DocumentMoniker": "C:\\Users\\riki\\Desktop\\Scacchi-GUI\\WinFormsAppScacchi\\WinFormsAppScacchi\\FormScacchiGUI.cs",
               "RelativeDocumentMoniker": "WinFormsAppScacchi\\FormScacchiGUI.cs",
               "ToolTip": "C:\\Users\\riki\\Desktop\\Scacchi-GUI\\WinFormsAppScacchi\\WinFormsAppScacchi\\FormScacchiGUI.cs",
               "RelativeToolTip": "WinFormsAppScacchi\\FormScacchiGUI.cs",
-              "ViewState": "AgIAALYAAAAAAAAAAAAwwNYAAAAyAAAAAAAAAA==",
+              "ViewState": "AgIAAMIAAAAAAAAAAAAwwHQAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-04T17:04:57.145Z",
               "EditorCaption": ""
