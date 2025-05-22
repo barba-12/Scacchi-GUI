@@ -40,6 +40,11 @@ public class Cavallo : Figura
         return new List<List<int>>();
     }
 
+    public override List<List<int>> checkCopriScacco(int row, int col)
+    {
+        return null;
+    }
+
     //funzione mosse possibili dentro la scacchiera
 
     //funzione per capire quali di quelle cordinate puo mangiare
@@ -62,7 +67,7 @@ public class Cavallo : Figura
                 }
             }
         }
-        else if (Movimento)
+        else if (Mangia)
         {
             foreach (List<int> l in checkMosse(row, col))
             {

@@ -22,6 +22,88 @@ public class Regina : Figura
     {
         return 9;
     }
+
+    public override List<List<int>> checkCopriScacco(int row, int col)
+    {
+        List<List<int>> listaCelle = new List<List<int>>();
+        List<List<int>> listaCelle1 = new List<List<int>>();
+        List<List<int>> listaCelle2 = new List<List<int>>();
+        List<List<int>> listaCelle3 = new List<List<int>>();
+        List<List<int>> listaCelle4 = new List<List<int>>();
+        List<List<int>> listaCelle5 = new List<List<int>>();
+        List<List<int>> listaCelle6 = new List<List<int>>();
+        List<List<int>> listaCelle7 = new List<List<int>>();
+
+        for (int i = 1; i < 8; i++)
+        {
+            //destra
+            if (row + i <= 7)
+            {
+                if (Partita.MatriceScacchiera[row + i, col] is Re && Partita.MatriceScacchiera[row + i, col].Colore != colore) return listaCelle;
+                listaCelle.Add(new List<int>());
+                listaCelle[listaCelle.Count - 1].Add(row + i);
+                listaCelle[listaCelle.Count - 1].Add(col);
+            }
+            //sinistra
+            if (row - i >= 0)
+            {
+                if (Partita.MatriceScacchiera[row - i, col] is Re && Partita.MatriceScacchiera[row - i, col].Colore != colore) return listaCelle1;
+                listaCelle1.Add(new List<int>());
+                listaCelle1[listaCelle1.Count - 1].Add(row - i);
+                listaCelle1[listaCelle1.Count - 1].Add(col);
+            }
+            //sotto
+            if (true && col + i <= 7)
+            {
+                if (Partita.MatriceScacchiera[row, col + i] is Re && Partita.MatriceScacchiera[row, col + i].Colore != colore) return listaCelle2;
+                listaCelle2.Add(new List<int>());
+                listaCelle2[listaCelle2.Count - 1].Add(row);
+                listaCelle2[listaCelle2.Count - 1].Add(col + i);
+            }
+            //sopra
+            if (col - i >= 0)
+            {
+                if (Partita.MatriceScacchiera[row, col - i] is Re && Partita.MatriceScacchiera[row, col - i].Colore != colore) return listaCelle3;
+                listaCelle3.Add(new List<int>());
+                listaCelle3[listaCelle3.Count - 1].Add(row);
+                listaCelle3[listaCelle3.Count - 1].Add(col - i);
+            }
+            //basso-destra
+            if ((row + i <= 7 && col + i <= 7))
+            {
+                if (Partita.MatriceScacchiera[row + i, col + i] is Re && Partita.MatriceScacchiera[row + i, col + i].Colore != colore) return listaCelle4;
+                listaCelle4.Add(new List<int>());
+                listaCelle4[listaCelle4.Count - 1].Add(row + i);
+                listaCelle4[listaCelle4.Count - 1].Add(col + i);
+            }
+            //alto-sinistra
+            if ((row - i >= 0 && col - i >= 0))
+            {
+                if (Partita.MatriceScacchiera[row - i, col - i] is Re && Partita.MatriceScacchiera[row - i, col - i].Colore != colore) return listaCelle5;
+                listaCelle5.Add(new List<int>());
+                listaCelle5[listaCelle5.Count - 1].Add(row - i);
+                listaCelle5[listaCelle5.Count - 1].Add(col - i);
+            }
+            //basso-sinistra
+            if ((row + i <= 7 && col - i >= 0))
+            {
+                if (Partita.MatriceScacchiera[row + i, col - i] is Re && Partita.MatriceScacchiera[row + i, col - i].Colore != colore) return listaCelle6;
+                listaCelle6.Add(new List<int>());
+                listaCelle6[listaCelle6.Count - 1].Add(row + i);
+                listaCelle6[listaCelle6.Count - 1].Add(col - i);
+            }
+            //alto-destra
+            if (col + i <= 7 && row - i >= 0)
+            {
+                if (Partita.MatriceScacchiera[row - i, col + i] is Re && Partita.MatriceScacchiera[row - i, col + i].Colore != colore) return listaCelle7;
+                listaCelle7.Add(new List<int>());
+                listaCelle7[listaCelle7.Count - 1].Add(row - i);
+                listaCelle7[listaCelle7.Count - 1].Add(col + i);
+            }
+        }
+
+        return null;
+    }
     public override List<List<int>> checkLimitaMosseRe(int row, int col)
     {
         List<List<int>> listaCelle = new List<List<int>>();
@@ -124,7 +206,7 @@ public class Regina : Figura
                 }
             }
         }            
-        else if (Movimento)
+        else if (Mangia)
         {
             foreach (List<int> l in checkSpost(row, col))
             {

@@ -44,6 +44,11 @@ public class Re : Figura
         return new List<List<int>>();
     }
 
+    public override List<List<int>> checkCopriScacco(int row, int col)
+    {
+        return null;
+    }
+
     private bool checkMovLibero(int x, int y) {
         //controllare se delle figure di colore opposto si possono muovore in questa casella nel caso limiare il movimento
         for (int i = 0; i < Partita.MatriceScacchiera.GetLength(0); i++)
@@ -83,7 +88,7 @@ public class Re : Figura
                 }
             }
         } 
-        else if (Movimento)
+        else if (Mangia)
         {
             foreach (List<int> l in checkMosse(row, col))
             {

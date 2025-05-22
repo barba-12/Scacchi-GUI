@@ -22,6 +22,53 @@ public class Alfiere : Figura
     {
         return 3;
     }
+
+    public override List<List<int>> checkCopriScacco(int row, int col)
+    {
+        List<List<int>> listaCelle = new List<List<int>>();
+        List<List<int>> listaCelle1 = new List<List<int>>();
+        List<List<int>> listaCelle2 = new List<List<int>>();
+        List<List<int>> listaCelle3 = new List<List<int>>();
+
+        //massimo sette punti in diagonale
+        for (int i = 1; i < 8; i++)
+        {
+            //basso-destra
+            if ((row + i <= 7 && col + i <= 7))
+            {
+                if (Partita.MatriceScacchiera[row + i, col + i] is Re && Partita.MatriceScacchiera[row + i, col + i].Colore != colore) return listaCelle;
+                listaCelle.Add(new List<int>());
+                listaCelle[listaCelle.Count - 1].Add(row + i);
+                listaCelle[listaCelle.Count - 1].Add(col + i);
+            }
+            //alto-sinistra
+            if ((row - i >= 0 && col - i >= 0))
+            {
+                if (Partita.MatriceScacchiera[row - i, col - i] is Re && Partita.MatriceScacchiera[row - i, col - i].Colore != colore) return listaCelle1;
+                listaCelle1.Add(new List<int>());
+                listaCelle1[listaCelle1.Count - 1].Add(row - i);
+                listaCelle1[listaCelle1.Count - 1].Add(col - i);
+            }
+            //basso-sinistra
+            if ((row + i <= 7 && col - i >= 0))
+            {
+                if (Partita.MatriceScacchiera[row + i, col - i] is Re && Partita.MatriceScacchiera[row + i, col - i].Colore != colore) return listaCelle2;
+                listaCelle2.Add(new List<int>());
+                listaCelle2[listaCelle2.Count - 1].Add(row + i);
+                listaCelle2[listaCelle2.Count - 1].Add(col - i);
+            }
+            //alto-destra
+            if (col + i <= 7 && row - i >= 0)
+            {
+                if (Partita.MatriceScacchiera[row - i, col + i] is Re && Partita.MatriceScacchiera[row - i, col + i].Colore != colore) return listaCelle3;
+                listaCelle3.Add(new List<int>());
+                listaCelle3[listaCelle3.Count - 1].Add(row - i);
+                listaCelle3[listaCelle3.Count - 1].Add(col + i);
+            }
+        }
+
+        return null;
+    }
     public override List<List<int>> checkMangia(int row, int col, bool mod)
     {
         //trovare quando la diagonale si interrompe perchè trovata una figura
@@ -40,7 +87,7 @@ public class Alfiere : Figura
                 }
             }
     }   
-        else if (Movimento)
+        else if (Mangia)
         {
             foreach (List<int> l in checkDiagonali(row, col))
             {

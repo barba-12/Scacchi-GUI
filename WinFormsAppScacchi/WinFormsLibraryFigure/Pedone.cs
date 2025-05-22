@@ -35,6 +35,11 @@ public class Pedone : Figura
         firstMove = false;
     }
 
+    public override List<List<int>> checkCopriScacco(int row, int col)
+    {
+        return null;
+    }
+
     public override List<List<int>> checkLimitaMosseRe(int row, int col)
     {
         List<List<int>> listaCelle = new List<List<int>>();
@@ -113,7 +118,7 @@ public class Pedone : Figura
                 }
             }
         }
-        else if (Movimento)
+        else if (Mangia)
         {
             if (colore)
             {
