@@ -81,6 +81,8 @@ public partial class FormScacchiGUI : Form
                     }
                 }
 
+                //salvare figura nella cella e utilizzare solo la matriceCelle per gestire tutto
+
                 // Se c'è un pezzo si aggiugne alla scacchiera
                 if (pezzo != null)
                 {
@@ -136,6 +138,16 @@ public partial class FormScacchiGUI : Form
                 Partita.MatriceCelle[cordinateFigura[0], cordinateFigura[1]].Label.Text = "";
                 Partita.MatriceCelle[cordinateFigura[0], cordinateFigura[1]].Label.Tag = null;
 
+                //libero le figure dalla scacco
+                foreach (Figura figura in Partita.MatriceScacchiera)
+                {
+                    if (figura != null) {
+                        figura.Mangia = true;
+                        figura.Movimento = true;
+                    }
+                }
+
+                //TODO verificare se effettua scacco anche spostandosi
                 bool ris = figura.checkScacco(cordinate[0], cordinate[1]);
                 if (ris) Console.WriteLine("scacco");
 

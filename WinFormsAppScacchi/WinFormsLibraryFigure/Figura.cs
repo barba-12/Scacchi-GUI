@@ -96,6 +96,7 @@ namespace WinFormsLibraryFigure
                     if (Partita.MatriceScacchiera[x, y] is Alfiere || Partita.MatriceScacchiera[x, y] is Torre || Partita.MatriceScacchiera[x, y] is Regina) {
 
                         if (Partita.MatriceScacchiera[x, y].checkCopriScacco(x, y) != null) {
+                            //ritorna la lista delle celle verso il re dove si puo muovere
                             List<List<int>> cordinateScaccanteProtezionabili = Partita.MatriceScacchiera[x, y].checkCopriScacco(x, y);
 
                             intrecciaCordinate(cordinateScaccanteProtezionabili, Partita.MatriceScacchiera[x, y].Colore);
@@ -109,7 +110,6 @@ namespace WinFormsLibraryFigure
                         }*/
                     }
 
-
                     return true;
                 }
             }
@@ -118,18 +118,23 @@ namespace WinFormsLibraryFigure
         }
 
         //controllo le cordiante dove le figure possono proteggere il re
+        //se possono proteggere cambio subito stato
         public void intrecciaCordinate(List<List<int>> cordinate, bool colore) {
-            for (int i = 0; i < Partita.MatriceScacchiera.GetLength(0) - 1; i++)
+            for (int i = 0; i < Partita.MatriceScacchiera.GetLength(0); i++)
             {
-                for (int j = 0; j < Partita.MatriceScacchiera.GetLength(0) - 1; j++)
+                for (int j = 0; j < Partita.MatriceScacchiera.GetLength(0); j++)
                 {
                     if (Partita.MatriceScacchiera[i, j] != null && Partita.MatriceScacchiera[i, j].Colore != colore) { 
                         List<List<int>> cordMangia = Partita.MatriceScacchiera[i, j].checkSposta(i, j);
+                        Console.WriteLine(cordMangia);
                         foreach (List<int> l1 in cordinate) {
                             foreach (List<int> l2 in cordMangia) {
+                                Console.WriteLine("x : " + l1[0] + "_" + l2[0] + " - " + "y : " + l1[1] + "_" + l2[0]);
                                 if (l1[0] == l2[0] && l1[1] == l2[1]) {
                                     //cordinate comuni qundi si puo spostare la figura in queste cordinate
-                                } 
+                                    Partita.MatriceScacchiera[l1[0], l1[1]].Movimento = true;
+                                    Partita.MatriceScacchiera[l1[0], l1[1]].Mangia = true;
+                                }
                             }
                         }
                     }
