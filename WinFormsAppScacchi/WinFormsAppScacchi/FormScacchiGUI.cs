@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Net.Security;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
@@ -15,10 +16,12 @@ public partial class FormScacchiGUI : Form
     private const int size = 8;
     private const int cellSize = 60;
     private const int margin = 30; // spazio per etichette
+    private bool scacco = false;
 
     //attributi per logica
     private List<int> cordinateFigura = null;
     private Figura figura = null;
+    private Figura figuraPrec = null;
     private List<List<List<int>>> lista = null;
 
     public FormScacchiGUI()
@@ -141,6 +144,7 @@ public partial class FormScacchiGUI : Form
                 //libero le figure dalla scacco
                 foreach (Figura figura in Partita.MatriceScacchiera)
                 {
+                    scacco = false;
                     if (figura != null) {
                         figura.Mangia = true;
                         figura.Movimento = true;
@@ -148,8 +152,14 @@ public partial class FormScacchiGUI : Form
                 }
 
                 //TODO verificare se effettua scacco anche spostandosi
+
+                //se è scacco richiamo movPersonalizato per ogni figura del segno opposto
+                //verifico che la figura cliccata sia di colore opposto a quella di questa figura
                 bool ris = figura.checkScacco(cordinate[0], cordinate[1]);
-                if (ris) Console.WriteLine("scacco");
+                if (ris) {
+                    scacco = true;
+                    Console.WriteLine("scacco");
+                }
 
                 clearScacchiera();
                 Partita.cambiaTurno();
@@ -164,6 +174,7 @@ public partial class FormScacchiGUI : Form
 
                 if (Partita.Turno == figura.Colore)
                 {
+                    //if (scacco && Partita.MatriceScacchiera[cordinateFigura[0], cordinateFigura[1]].Colore != Partita.MatriceScacchiera[cordinate[0], cordinate[1]].Colore)
                     List<List<int>> lMov = figura.checkSposta(cordinate[0], cordinate[1]);
                     List<List<int>> lMan = figura.checkMangia(cordinate[0], cordinate[1], true);
                     cordinateFigura = new List<int>() { cordinate[0], cordinate[1] };
