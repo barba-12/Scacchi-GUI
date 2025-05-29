@@ -84,31 +84,12 @@ namespace WinFormsLibraryFigure
                         }
                     }
 
+                    //da qui fino alla fine del metodo debo implementarlo per le singole figure
+                    // -----------------------------------------------------------------------------------------------------------------------------
+
                     //tutte le figure di colore opposot a figuraScaccante posso mangiarla
-                    List<List<int>> cordinateFigureMangianti = checkMangiaFigura(x, y);
 
-                    foreach (List<int> l1 in cordinateFigureMangianti)
-                    {
-                        Partita.MatriceScacchiera[l1[0], l1[1]].mangia = true;
-                    }
-
-                    //tutte le figure di colore opposot a figuraScaccante che posso mettersi tra la figura e il re
-                    if (Partita.MatriceScacchiera[x, y] is Alfiere || Partita.MatriceScacchiera[x, y] is Torre || Partita.MatriceScacchiera[x, y] is Regina) {
-
-                        if (Partita.MatriceScacchiera[x, y].checkCopriScacco(x, y) != null) {
-                            //ritorna la lista delle celle verso il re dove si puo muovere
-
-                            List<List<int>> cordinateScaccanteProtezionabili = Partita.MatriceScacchiera[x, y].checkCopriScacco(x, y);
-                            intrecciaCordinate(cordinateScaccanteProtezionabili, x, y);
-                        }
-
-                        
-                        /*
-                        foreach (List<int> l1 in cordinateFigureMangianti)
-                        {
-                            Partita.MatriceScacchiera[l1[0], l1[1]].mangia = true;
-                        }*/
-                    }
+                    // ------------------------------------------------------------------------------------------------------------------------
 
                     return true;
                 }
@@ -117,61 +98,87 @@ namespace WinFormsLibraryFigure
             return false;
         }
 
+        public void checkProteggiScacco(int xSca, int ySca, int xPro, int yPro) {
+            /*List<List<int>> cordinateFigureMangianti = checkMangiaFigura(x, y);
+
+            foreach (List<int> l1 in cordinateFigureMangianti)
+            {
+                Partita.MatriceScacchiera[l1[0], l1[1]].mangia = true;
+            }*/
+
+            //tutte le figure di colore opposot a figuraScaccante che posso mettersi tra la figura e il re
+            if (Partita.MatriceScacchiera[xPro, yPro] is Alfiere || Partita.MatriceScacchiera[xPro, yPro] is Torre || Partita.MatriceScacchiera[xPro, yPro] is Regina)
+            {
+
+                if (Partita.MatriceScacchiera[xPro, yPro].checkCopriScacco(xPro, yPro) != null)
+                {
+                    //ritorna la lista delle celle verso il re dove si puo muovere
+
+                    intrecciaCordinate(xSca, ySca, xPro, yPro);
+                }
+
+                /*
+                foreach (List<int> l1 in cordinateFigureMangianti)
+                {
+                    Partita.MatriceScacchiera[l1[0], l1[1]].mangia = true;
+                }*/
+            }
+        }
+
         //controllo le cordiante dove le figure possono proteggere il re
         //se possono proteggere cambio subito stato
-        public void intrecciaCordinate(List<List<int>> cordinate, int x, int y) {
-            for (int i = 0; i < Partita.MatriceScacchiera.GetLength(0); i++)
+
+        //rimuovere doppio diclo di ricerca per tutte le figure e implementare il metodo per le singole figure
+        public void intrecciaCordinate(int xSca, int ySca, int xPro, int yPro) {
+
+            List<List<int>> cordinateDaProteggere = Partita.MatriceScacchiera[xSca, ySca].checkCopriScacco(xSca, ySca);
+            if (Partita.MatriceScacchiera[xPro, yPro] != null && Partita.MatriceScacchiera[xPro, yPro].Colore != Partita.MatriceScacchiera[xSca, ySca].Colore)
             {
-                for (int j = 0; j < Partita.MatriceScacchiera.GetLength(0); j++)
+                Console.WriteLine(Partita.MatriceScacchiera[xPro, yPro].getPunteggio());
+
+                Partita.MatriceScacchiera[xPro, yPro].Movimento = true;
+                List<List<int>> cordMangia = Partita.MatriceScacchiera[xPro, yPro].checkSposta(xPro, yPro);
+                Partita.MatriceScacchiera[xPro, yPro].Movimento = false;
+
+                //debug
+                /*foreach (List<int> listaCord in cordinate)
                 {
-                    if (Partita.MatriceScacchiera[i, j] != null && Partita.MatriceScacchiera[i, j].Colore != Partita.MatriceScacchiera[x, y].Colore) {
-                        Console.WriteLine(Partita.MatriceScacchiera[i, j].getPunteggio());
+                    Console.WriteLine($"cordinate figura Scaccante | x : {listaCord[0]} - y : {listaCord[1]}");
+                }
+                foreach (List<int> listaCordM in cordMangia)
+                {
+                    Console.WriteLine($"cordinate figura Protegge | x : {listaCordM[0]} - y : {listaCordM[1]}");
+                }*/
 
-                        Partita.MatriceScacchiera[i, j].Movimento = true;
-                        List<List<int>> cordMangia = Partita.MatriceScacchiera[i, j].checkSposta(i, j);
-                        Partita.MatriceScacchiera[i, j].Movimento = false;
+                //mi salva in una lista le cordinate da passare alla fuinzione movPers e mangiaPers
 
-                        //debug
-                        /*foreach (List<int> listaCord in cordinate)
+                foreach (List<int> l1 in cordinateDaProteggere)
+                {
+                    List<List<int>> listaCordComuni = new List<List<int>>();
+                    foreach (List<int> l2 in cordMangia)
+                    {
+                        //Console.WriteLine("x : " + l1[0] + "_" + l2[0] + " - " + "y : " + l1[1] + "_" + l2[1]);
+                        if (l1[0] == l2[0] && l1[1] == l2[1])
                         {
-                            Console.WriteLine($"cordinate figura Scaccante | x : {listaCord[0]} - y : {listaCord[1]}");
+                            listaCordComuni.Add(new List<int>());
+                            listaCordComuni[listaCordComuni.Count - 1].Add(l1[0]);
+                            listaCordComuni[listaCordComuni.Count - 1].Add(l1[1]);
+                            //cordinate comuni qundi si puo spostare la figura in queste cordinate
                         }
-                        foreach (List<int> listaCordM in cordMangia)
-                        {
-                            Console.WriteLine($"cordinate figura Protegge | x : {listaCordM[0]} - y : {listaCordM[1]}");
-                        }*/
+                    }
 
-                        //mi salva in una lista le cordinate da passare alla fuinzione movPers e mangiaPers
-                        
-                        foreach (List<int> l1 in cordinate) {
-                            List<List<int>> listaCordComuni = new List<List<int>>();
-                            foreach (List<int> l2 in cordMangia) {
-                                //Console.WriteLine("x : " + l1[0] + "_" + l2[0] + " - " + "y : " + l1[1] + "_" + l2[1]);
-                                if (l1[0] == l2[0] && l1[1] == l2[1]) {
-                                    listaCordComuni.Add(new List<int>());
-                                    listaCordComuni[listaCordComuni.Count-1].Add(l1[0]);
-                                    listaCordComuni[listaCordComuni.Count-1].Add(l1[1]);
-                                    //cordinate comuni qundi si puo spostare la figura in queste cordinate
-                                }
-                            }
-
-                            //qua ichiamo la funzione
-                            movPers(listaCordComuni);
-                            //debug
-                            foreach (List<int> lCom in listaCordComuni)
-                            {
-                                Console.WriteLine($"cord comuni | x : {lCom[0]} - y : {lCom[1]}");
-                            }
-                        }
-
-
+                    //qua ichiamo la funzione
+                    movPers(listaCordComuni);
+                    //debug
+                    foreach (List<int> lCom in listaCordComuni)
+                    {
+                        Console.WriteLine($"cord comuni | x : {lCom[0]} - y : {lCom[1]}");
                     }
                 }
             }
         }
 
         //metodo personalizzato
-        //bisogna richiamare la funzione intrecciaCordinate per la singola sigura che si clicca
         public void movPers(List<List<int>> cordinate) {
             foreach (List<int> l in cordinate)
             {
